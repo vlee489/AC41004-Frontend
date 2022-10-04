@@ -1,6 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">brightsolid</a>
@@ -76,24 +73,24 @@
             Compliance Rules
           </div>
           <div class="card-body">
+            <div class="table-responsive">
             <table class="table">
               <thead>
-                <tr>
-                  <th scope="col">#</th>
+                <tr class="text-center">
                   <th scope="col">Rule</th>
-                  <th scope="col">Non-Compliant</th>
-                  <th scope="col">More Details</th>
+                  <th scope="col" class="text-center">Non-Compliant Resources</th>
+                  <th scope="col" class="text-center">More Details</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="text-center">
                 <tr>
-                  <th scope="row">1</th>
                   <td>ec2-hello</td>
-                  <td>2</td>
-                  <td><button>-></button></td>
+                  <td class="text-center">2</td>
+                  <td class="text-center"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
                 </tr>
               </tbody>
             </table>
+          </div>
           </div>
         </div>
       </div>
@@ -107,10 +104,10 @@
           <span class="badge bg-primary rounded-pill float-right mt-2" >2</span>
         </div>
         <div class="card-body">
+          <div class="table-responsive">
           <table class="table">
-            <thead>
+            <thead class="text-center">
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Resource</th>
                 <th scope="col">Type</th>
                 <th scope="col">Next Review</th>
@@ -118,17 +115,24 @@
                 <th scope="col">More Details</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
               <tr>
-                <th scope="row">1</th>
-                <td>S3 bucket</td>
+                <td>S3 bucket set to Public</td>
                 <td>ebs</td>
                 <td>27/09/22</td>
-                <td>Y/N</td>
-                <td><button>-></button></td>
+                <td><i class="fa-solid fa-check"></i></td>
+                <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
+              </tr>
+              <tr>
+                <td>Unencrypted S3 bucket</td>
+                <td>ebs</td>
+                <td>27/09/22</td>
+                <td><i class="fa-solid fa-xmark"></i></td>
+                <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
               </tr>
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </div>
@@ -141,32 +145,35 @@
           <span class="badge bg-primary rounded-pill float-right mt-2" >2</span>
         </div>
         <div class="card-body">
-          <table class="table">
-            <thead>
+          <div class="table-responsive">
+            <table class="table">
+            <thead class="text-center">
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Resource</th>
                 <th scope="col">Type</th>
                 <th scope="col">Next Review</th>
-                <th scope="col">Compliance</th>
-                <th scope="col">More Details</th>
+                <th scope="col" class="text-center">Compliance</th>
+                <th scope="col" class="text-center">More Details</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
               <tr>
-                <th scope="row">1</th>
                 <td>S3 bucket</td>
                 <td>ebs</td>
                 <td>27/09/22</td>
-                <td>Y/N</td>
-                <td><button>-></button></td>
+                <td class="text-center"><i class="fa-solid fa-check"></i></td>
+                <td class="text-center"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
               </tr>
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </div>
   </div>
   </body>
   
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/106269d5f8.js" crossorigin="anonymous"></script>
 
