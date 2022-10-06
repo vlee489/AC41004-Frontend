@@ -1,4 +1,4 @@
-// Select the last account ID as the default account to display
+// The default account to display
 let accountID = "";
 
 // Loads accounts user has access to into Accounts Dropdown in Nav Bar
