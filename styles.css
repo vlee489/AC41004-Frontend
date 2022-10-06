@@ -1,5 +1,6 @@
 .dyn-height {
-    max-height:300px;
+    min-height: 350px;
+    max-height: 350px;
     overflow-y:scroll;
 }
 
@@ -11,9 +12,14 @@
     background-color: #232323;
 }
 
-.card-body-style{
+.card-body{
     background-color: #232323;
     color: white;
+}
+
+.dyn-height-full{
+    max-height: 400px;
+    overflow-y:scroll;
 }
 
 .card-header-style{
@@ -24,3 +30,4 @@
     background-color: #383838;
     color: white;
 }
+

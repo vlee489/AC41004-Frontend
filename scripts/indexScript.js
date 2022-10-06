@@ -37,18 +37,6 @@ async function loadAccounts(){
 
 
 
-// Sets the account to the one selected in the Accounts Dropdown in Nav Bar
-const button3 = document.getElementById('accountListItem');
-
-button3.addEventListener('click', async _ => {
-try{
-    console.log('clicked');
-}catch(err) {
-    console.error(`Error: ${err}`);
-  }
-
-});
-
 // Fetches compliance rules and the number of non-compliant resources into the Compliance Rules tables
 async function loadRules(){
     
