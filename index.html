@@ -30,21 +30,15 @@
   </nav>
   
 
-  <body>
-    <!-- <div class="row gx-5 m-5">
-      <div class="col">
-        <select class="form-select" aria-label="Default select example" id="accountSelect"></select>
-      </div>
-    </div> -->
-
+  <body class = "background">
     <div class="row gx-5 m-5">
       <div class="col">
         <div class="card">
           <div class="card-header bg-warning">
             Compliance Summary
           </div>
-          <div class="card-body dyn-height">
-            <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+          <div class="card-body dyn-height card-body-style">
+            <canvas class = "background" id="myChart" style="width:100%; max-width:600px"></canvas>
         <script>
         var xValues = ["Compliant", "Non-Compliant"];
         var yValues = [80, 20];
@@ -53,19 +47,13 @@
           "#F84F31",
         ];
         new Chart("myChart", {
-          type: "pie",
+          type: "doughnut",
           data: {
             labels: xValues,
             datasets: [{
               backgroundColor: barColors,
               data: yValues
             }]
-          },
-          options: {
-            title: {
-              display: false,
-              text: "Compliance Summary"
-            }
           }
         });
         </script>
@@ -80,9 +68,9 @@
           <div class="card-header bg-warning">
             Compliance Rules
           </div>
-          <div class="card-body dyn-height">
+          <div class="card-body dyn-height card-body-style">
             <div class="table-responsive">
-            <table class="table">
+            <table class="table table-dark table-striped">
               <thead>
                 <tr class="text-center">
                   <th scope="col">Rule</th>
@@ -106,9 +94,9 @@
           Overdue Exceptions
           <span class="badge bg-primary rounded-pill float-right mt-2" >2</span>
         </div>
-        <div class="card-body dyn-height">
+        <div class="card-body dyn-height card-body-style">
           <div class="table-responsive">
-          <table class="table">
+          <table class="table table-dark table-striped">
             <thead class="text-center">
               <tr>
                 <th scope="col">Resource</th>
@@ -147,9 +135,9 @@
           Upcoming Exceptions
           <span class="badge bg-primary rounded-pill float-right mt-2" >2</span>
         </div>
-        <div class="card-body dyn-height">
+        <div class="card-body dyn-height card-body-style">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table table-dark table-striped">
             <thead class="text-center">
               <tr>
                 <th scope="col">Resource</th>
