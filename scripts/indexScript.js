@@ -1,6 +1,4 @@
-// The default account to display
-let accountID = "";
-let homeLink = window.location.href;
+let defaultAccountID = '';
 
 // Loads accounts user has access to into Accounts Dropdown in Nav Bar
 async function loadAccounts(){
@@ -13,21 +11,25 @@ async function loadAccounts(){
     .then(json => {
         // Create a variable to store HTML
         let li = ``;
-        //let dd = ``;
         let accountLink = window.location.href;
         
         
         // Loop through each data and add a table row
         json.forEach(user => {
-            let accountLink2 = `${accountLink}?id=${user.id}`;
+
+            let accountLink2 = ``;
+            if (!accountLink.endsWith(user.id)){
+                let accountLink2 = `${accountLink}?id=${user.id}`;
+            }else{
+                let accountLink2 = accountLink;
+            }
+            
             li += `<li><a class="dropdown-item" href=${accountLink2}>${user.name} (${user.reference})</a></li>`;
-            //dd += `<option selected value=${user.id}>${user.name}</option>`
-            accountID = user.id;
+            defaultAccountID = user.id;
         });
     
     // Display result
     document.getElementById("accountList").innerHTML = li;
-    //document.getElementById("accountSelect").innerHTML = dd;
     
 });
   } catch(err) {
@@ -45,8 +47,13 @@ async function loadRules(){
      //633ad7aca938b45d958ae772
      await loadAccounts();
      const params = new URLSearchParams(window.location.search);
-     const URLaccountID = params.get("id");
-      const response = await fetch(`https://itp.vlee.me.uk/ruleOverview/${URLaccountID}`, {
+    let URLaccountID = params.get("id");
+    if (URLaccountID == null){
+        URLaccountID = defaultAccountID;
+        let newURL = `${window.location.href}?id=${URLaccountID}`;
+        window.location.replace(newURL);
+    }
+    const response = await fetch(`https://itp.vlee.me.uk/ruleOverview/${URLaccountID}`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
         credentials:"include"
@@ -85,7 +92,12 @@ async function loadOverdue(){
      //633ad7aca938b45d958ae772
      await loadAccounts();
      const params = new URLSearchParams(window.location.search);
-     const URLaccountID = params.get("id");
+     let URLaccountID = params.get("id");
+     if (URLaccountID == null){
+        URLaccountID = defaultAccountID;
+        let newURL = `${window.location.href}?id=${URLaccountID}`;
+        window.location.replace(newURL);
+    }
     const response = await fetch(`https://itp.vlee.me.uk/exceptions/account/${URLaccountID}/overdue`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
@@ -128,7 +140,12 @@ async function loadUpcoming(){
      //633ad7aca938b45d958ae772
      await loadAccounts();
      const params = new URLSearchParams(window.location.search);
-     const URLaccountID = params.get("id");
+     let URLaccountID = params.get("id");
+     if (URLaccountID == null){
+        URLaccountID = defaultAccountID;
+        let newURL = `${window.location.href}?id=${URLaccountID}`;
+        window.location.replace(newURL);
+    }
     const response = await fetch(`https://itp.vlee.me.uk/exceptions/account/${URLaccountID}/upcoming?days=350`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
@@ -171,7 +188,12 @@ async function loadChartValues(){
      //633ad7aca938b45d958ae772
     await loadAccounts();
     const params = new URLSearchParams(window.location.search);
-    const URLaccountID = params.get("id");
+    let URLaccountID = params.get("id");
+    if (URLaccountID == null){
+        URLaccountID = defaultAccountID;
+        let newURL = `${window.location.href}?id=${URLaccountID}`;
+        window.location.replace(newURL);
+    }
     const response = await fetch(`https://itp.vlee.me.uk/accountOverview/${URLaccountID}`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
