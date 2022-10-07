@@ -47,6 +47,7 @@ async function loadRules(){
      //633ad7aca938b45d958ae772
      await loadAccounts();
      const params = new URLSearchParams(window.location.search);
+     let non_compliant_resources = [];
     let URLaccountID = params.get("id");
     if (URLaccountID == null){
         URLaccountID = defaultAccountID;
@@ -61,6 +62,7 @@ async function loadRules(){
       .then(json => {
           // Create a variable to store HTML
           let li = ``;
+          let li2 = ``;
           // Loop through each data and add a table row
           json.forEach(user => {
             const name = user['rule']['name'];
@@ -74,10 +76,19 @@ async function loadRules(){
                 <td >${length}</td>
                 <td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
+
+              //for item in non compliant
+              //resource id add to list
+              user['non_compliant'].forEach(resourceid => {
+                non_compliant_resources.push(resourceid);
+              });
+              
             }
         });
       // Display result
+      
       document.getElementById("rule-table").innerHTML = li;
+      loadResources(non_compliant_resources);
   });
     } catch(err) {
       console.error(`Error: ${err}`);
@@ -85,6 +96,13 @@ async function loadRules(){
 }
 
 loadRules();
+
+async function loadResources(resourceArray){
+  resourceArray.forEach(async resourceID => {
+    console.log(resourceID);
+  });
+}
+
 
 async function loadOverdue(){
     
