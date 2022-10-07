@@ -1,4 +1,6 @@
 let defaultAccountID = '';
+let fixedAddress = ' ';
+let homeAddress = ' ';
 
 // Loads accounts user has access to into Accounts Dropdown in Nav Bar
 async function loadAccounts(){
@@ -12,8 +14,7 @@ async function loadAccounts(){
         // Create a variable to store HTML
         let li = ``;
         let accountLink = window.location.href;
-        
-        
+ 
         // Loop through each data and add a table row
         json.forEach(user => {
 
@@ -68,7 +69,18 @@ async function loadRules(){
             const name = user['rule']['name'];
             const length = user['non_compliant'].length;
             const ruleID = user['rule']['id'];
-            let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?ruleid=${ruleID}`;
+
+            let accountLink = window.location.href;
+            let accountLink2 = accountLink.replace("index.html", "ruleIndex.html");
+            accountLink2 = `${accountLink2}&ruleName=${ruleID}`;
+            console.log(accountLink2);
+
+            //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
+            // let accountLink2 = `${fixedAddress}CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
+
+            
+
+
             
             if (length >0) {
                 li += `<tr>
@@ -88,7 +100,7 @@ async function loadRules(){
       // Display result
       
       document.getElementById("rule-table").innerHTML = li;
-      loadResources(non_compliant_resources);
+      
   });
     } catch(err) {
       console.error(`Error: ${err}`);
@@ -97,11 +109,6 @@ async function loadRules(){
 
 loadRules();
 
-async function loadResources(resourceArray){
-  resourceArray.forEach(async resourceID => {
-    console.log(resourceID);
-  });
-}
 
 
 async function loadOverdue(){

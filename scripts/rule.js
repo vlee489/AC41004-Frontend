@@ -5,7 +5,8 @@ async function loadRules(){
      const params = new URLSearchParams(window.location.search);
      let non_compliant_resources = [];
      let URLaccountID = params.get("id");
-     let ruleID = params.get("rule");
+     let ruleIDURL = params.get("ruleName");
+     let ruleName = '';
 
      // ruleIndex.html?id=633ad7aca938b45d958ae772&rule=name
     
@@ -20,16 +21,23 @@ async function loadRules(){
           json.forEach(user => {
             
             const length = user['non_compliant'].length;
+            const ruleID = user['rule']['id'];
             
-            if (length >0) {
+
+            
+            if (length >0 && ruleID == ruleIDURL ) {
+                ruleName = user['rule']['name'];
                 user['non_compliant'].forEach(resourceid => {
                 non_compliant_resources.push(resourceid);
               });
             }
+
+            
+
         });
       // Display result
     
-    document.getElementById("rule-name").innerHTML = ruleID;
+    document.getElementById("rule-name").innerHTML = ruleName;
     loadResources(non_compliant_resources);
 
   });
@@ -87,3 +95,4 @@ async function loadResources(non_compliant_resources){
 }
 
 loadRules();
+
