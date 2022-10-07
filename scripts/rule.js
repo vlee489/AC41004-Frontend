@@ -53,6 +53,7 @@ async function loadResources(non_compliant_resources){
     try {   
     const params = new URLSearchParams(window.location.search);
     let URLaccountID = params.get("id");
+    let ruleID = params.get("ruleName");
    
 
     const response = await fetch(`https://itp.vlee.me.uk/resource/account/${URLaccountID}`, {
@@ -71,13 +72,20 @@ async function loadResources(non_compliant_resources){
             const type = resource['resource_type']['name'];
             
 
-            //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?ruleid=${ruleID}`;
+            let accountLink = window.location.href;
+            let accountLink2 = accountLink.replace("ruleIndex.html", "CRDRIndex.html");
+            let idstring = `&ruleName=${ruleID}`;
+            accountLink2 = accountLink2.replace(idstring , "");
+            accountLink2 = `${accountLink2}&resourceID=${resourceID}`;
+            console.log(accountLink2);
+            
+
             
             if (non_compliant_resources.includes(resourceID)){
                 li += `<tr>
                 <td>${name}</td>
                 <td >${type}</td>
-                <td><a href=# class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
             }
               //<td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
