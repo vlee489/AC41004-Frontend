@@ -60,6 +60,7 @@ async function loadRules(){
             const length = user['non_compliant'].length;
             const ruleID = user['rule']['id'];
             let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?ruleid=${ruleID}`;
+            
             if (length >0) {
                 li += `<tr>
                 <td>${name}</td>
@@ -165,3 +166,50 @@ async function loadUpcoming(){
 
 loadUpcoming();
 
+async function loadChartValues(){
+    try {     
+     //633ad7aca938b45d958ae772
+    await loadAccounts();
+    const params = new URLSearchParams(window.location.search);
+    const URLaccountID = params.get("id");
+    const response = await fetch(`https://itp.vlee.me.uk/accountOverview/${URLaccountID}`, {
+        headers: {"Content-type": "application/json"},
+        method: 'get',
+        credentials:"include"
+      })
+      
+      .then(response => response.json())
+      .then(json => {
+          // Create a variable to store HTML
+          let li = ``;
+          const non_compliant = json['non_compliant'];
+          const compliant = json['compliant'];
+          // Loop through each data and add a table row
+          
+      // Display result
+        var xValues = ["Compliant", "Non-Compliant"];
+        var yValues = [compliant, non_compliant];
+        var barColors = [
+          "#23C552",
+          "#F84F31",
+        ];
+        new Chart("myChart", {
+          type: "doughnut",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          }
+        });
+
+        Chart.defaults.global.defaultFontColor = "#fff";
+  });
+  //console.log(response);
+    } catch(err) {
+      console.error(`Error: ${err}`);
+    }
+}
+
+loadChartValues();

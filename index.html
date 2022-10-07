@@ -38,27 +38,7 @@
             Compliance Summary
           </div>
             <div class="card-body dyn-height card-body-style">
-              <canvas class = "background" id="myChart" style="width:100%; max-width:600px"></canvas>
-        <script>
-        var xValues = ["Compliant", "Non-Compliant"];
-        var yValues = [80, 20];
-        var barColors = [
-          "#23C552",
-          "#F84F31",
-        ];
-        new Chart("myChart", {
-          type: "doughnut",
-          data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-          }
-        });
-
-        Chart.defaults.global.defaultFontColor = "#fff";
-        </script>
+              <canvas class = "background" id="myChart" style="width:100%"></canvas>
           </div>
         </div>
       </div>
