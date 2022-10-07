@@ -5,6 +5,7 @@ async function loadRules(){
 
      const params = new URLSearchParams(window.location.search);
         let URLresourceID = params.get("resourceID");
+
     //${URLresourceID}
     const response = await fetch(`https://itp.vlee.me.uk/rule/resource/633afdf0996f8335ccc1b55e`, {
         headers: {"Content-type": "application/json"},
@@ -40,6 +41,7 @@ async function loadRules(){
         });
       // Display result
       document.getElementById("crdr-rule-table").innerHTML = li;
+
       
   });
     } catch(err) {
@@ -48,3 +50,33 @@ async function loadRules(){
 }
 
 loadRules();
+
+async function loadResource(){
+    
+  try {     
+   //633ad7aca938b45d958ae772
+
+   const params = new URLSearchParams(window.location.search);
+    let URLresourceID = params.get("resourceID");
+    let resourceName = '';
+
+  //${URLresourceID}
+  const response = await fetch(`https://itp.vlee.me.uk/resource/${URLresourceID}`, {
+      headers: {"Content-type": "application/json"},
+      method: 'get',
+      credentials:"include"
+    }).then(response => response.json())
+    .then(json => {
+        // Create a variable to store HTML
+        resourceName = json['name'];
+    // Display result
+    document.getElementById("res-name").innerHTML = resourceName;
+
+    
+});
+  } catch(err) {
+    console.error(`Error: ${err}`);
+  }
+}
+
+loadResource();
