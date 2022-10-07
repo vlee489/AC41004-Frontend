@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brightsolid - Add Exception</title>
+    <script defer src="AddException.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<h1>Add Exception</h1>
+<form>
+<select name="subject" id="subject">
+  <option value="" selected="selected">Select Rule for Exception</option>
+</select>
+  <br><br>
+<h3>Exception Review Date</h3>
+  <label for="exception"></label>
+  <input type="date" id="exception" name="exception" placeholder="DD/MM/YYYY"><br><br>
+
+<h3>Justification for Exception</h3>
+<label for="just"></label>
+<input type="text" id="just" name="just" placeholder="Reason for adding exception"><br><br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
