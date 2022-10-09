@@ -69,7 +69,7 @@ async function loadResources(non_compliant_resources){
           json.forEach(resource => {
             const name = resource['name'];
             const resourceID = resource['id'];
-            const type = resource['resource_type']['name'];
+            //const type = resource['resource_type']['name'];
             
 
             let accountLink = window.location.href;
@@ -84,7 +84,6 @@ async function loadResources(non_compliant_resources){
             if (non_compliant_resources.includes(resourceID)){
                 li += `<tr>
                 <td>${name}</td>
-                <td >${type}</td>
                 <td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
             }
@@ -104,3 +103,14 @@ async function loadResources(non_compliant_resources){
 
 loadRules();
 
+loadExceptions();
+
+function homePage(){
+  const params = new URLSearchParams(window.location.search);
+  let accountLink = window.location.href;
+  accountLink = accountLink.replace("ruleIndex.html", "index.html");
+  let URLresourceID = params.get("ruleName");
+  URLresourceID = `&ruleName=${URLresourceID}`;
+  accountLink = accountLink.replace(URLresourceID, "");
+  window.location = accountLink;
+}

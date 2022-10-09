@@ -5,26 +5,16 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">brightsolid</a>
+      <a class="navbar-brand">brightsolid</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" id="home-link" onclick="homePage()">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+          
         </ul>
       </div>
     </div>
@@ -33,15 +23,10 @@
 
   <body class="background">
     <div class="title-section card-body-style" style="padding-left: 30px; padding-top: 10px;">
-    <h1>Edit Resource</h1>
-    <h3>Resource Name: </h3>
-    <p id = "res-name"></p>
+    <h1> Detailed Report</h1>
+    <h3 id = "res-name"></h3>
+    
     </div>
-    <!--
-    <div class="row">
-        <div class="col-12"><input type="button" class="btn btn-outline-dark float-right" value="Add Exception"></div>
-    </div>
-    -->
     <div class="row gx-5 m-5"> 
       <div class="col">
         <div class="card">
@@ -56,26 +41,12 @@
                   <th scope="col">Exception Name</th>
                   <th scope="col">Added By</th>
                   <th scope="col">Next Review</th>
-                  <th scope="col">Compliance Status</th>
                   <th scope="col">Edit Exception</th>
                 </tr>
               </thead>
-              <tbody class="text-center">
+              <tbody class="text-center" id="crdr-exception-table">
                 <!--read this from db-->
-                <tr>
-                  <th scope="row">Unencrypted S3 Bucket</th>
-                  <td>Admin 1</td>
-                  <td>30/10/2022</td>
-                  <td>&#x2713;</td>
-                  <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                </tr>
-                <tr>
-                  <th scope="row">S3 Bucket set to Public</th>
-                  <td>Admin 2</td>
-                  <td>27/09/2022</td>
-                  <td>X</td>
-                  <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                </tr>
+                <!-- CRDRscript.js -->
               </tbody>
             </table>
           </div>
@@ -94,13 +65,12 @@
                 <thead class="text-center">
                   <tr>
                     <th scope="col">Rule Name</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Compliance Status</th>
                   </tr>
                 </thead>
                 <tbody class="text-center" id = "crdr-rule-table">
                   <!--read this from db-->
-                  
+                  <!-- CRDRscript.js -->
                 </tbody>
               </table>
             </div>
@@ -112,7 +82,44 @@
         <div class="col">
           <div class="card">
             <div class="card-header bg-warning">
-              Audit Trail
+              Audit Trail : Non-Compliance
+            </div>
+            <div class="card-body long-dyn-height card-body-style">
+              <table class="table table-dark table-striped">
+                <thead class="text-center">
+                  <tr>
+                    <th scope="col">Rule Name</th>
+                    <th scope="col">Non-Compliant Date</th>
+                    <th scope="col">Current Compliance</th>
+                    <th scope="col">More Details</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center" id = "resource-audit-table">
+                  <!--read this from db-->
+                  <tr>
+                    <th>s3-detect-unauthorised-public-bucket</th>
+                    <td>1/02/2022</td>
+                    <td><i class="fa-solid fa-check"></i></td>
+                    <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                  </tr>
+                  <tr>
+                    <th>s3-detect-unencrypted-bucket</th>
+                    <td>23/09/2022</td>
+                    <td><i class="fa-solid fa-xmark"></i></td>
+                    <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row gx-5 m-5"> 
+        <div class="col">
+          <div class="card">
+            <div class="card-header bg-warning">
+              Audit Trail: Exception
             </div>
             <div class="card-body long-dyn-height card-body-style">
               <table class="table table-dark table-striped">
@@ -126,22 +133,22 @@
                     <th scope="col">More Actions</th>
                   </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody class="text-center" id = "exception-audit-table">
                   <!--read this from db-->
                   <tr>
-                    <th scope="row">Unencrypted S3 Bucket</th>
+                    <th>Unencrypted S3 Bucket</th>
                     <td>Admin 1</td>
                     <td>1/10/2022</td>
                     <td>N/A</td>
-                    <td>&#x2713;</td>
+                    <td><i class="fa-solid fa-check"></i></td>
                     <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
                   </tr>
                   <tr>
-                    <th scope="row">S3 Bucket set to Public</th>
+                    <th>S3 Bucket set to Public</th>
                     <td>Admin 2</td>
                     <td>5/9/2022</td>
                     <td>27/9/2022</td>
-                    <td>X</td>
+                    <td><i class="fa-solid fa-xmark"></i></td>
                     <td><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
                   </tr>
                 </tbody>
@@ -150,6 +157,8 @@
           </div>
         </div>
       </div>
+  
   </body>
+
   
   <script src="https://kit.fontawesome.com/106269d5f8.js" crossorigin="anonymous"></script>
