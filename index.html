@@ -14,11 +14,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" tabindex="0">
               Accounts 
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="accountList">
-              <li class="dropdown-item"  id="accountListItem"></li>
+            <ul class="dropdown-menu" role="button" aria-labelledby="navbarDropdown" id="accountList">
+              
             </ul>
           </li>
         </ul>
@@ -31,7 +31,7 @@
     <div class="row gx-5 m-5 d-flex">
       <div class="col">
         <div class="card">
-          <div class="card-header bg-warning">
+          <div class="card-header bg-warning" tabindex="0">
             Compliance Summary
           </div>
             <div class="card-body dyn-height card-body-style">
@@ -44,7 +44,7 @@
      
       <div class="col">
         <div class="card">
-          <div class="card-header bg-warning">
+          <div class="card-header bg-warning" tabindex="0">
             Compliance Rules
           </div>
           <div class="card-body dyn-height card-body-style">
@@ -98,7 +98,7 @@
   <div class="row gx-5 m-5">
     <div class="col">
       <div class="card">
-        <div class="card-header bg-warning d-flex justify-content-between">
+        <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
           Overdue Exceptions
           <span class="badge bg-primary rounded-pill float-right mt-2" id = "overdue-counter"></span>
         </div>
@@ -126,7 +126,7 @@
   <div class="row gx-5 m-5">
     <div class="col">
       <div class="card">
-        <div class="card-header bg-warning d-flex justify-content-between">
+        <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
           Upcoming Exceptions
           <span class="badge bg-primary rounded-pill float-right mt-2" id="upcoming-counter" ></span>
         </div>

@@ -109,7 +109,7 @@ async function loadExceptions(){
               <td>${name}</td>
               <td>${firstname} ${surname}</td>
               <td>${date}</td>
-              <td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+              <td><a href=${accountLink2} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               
             </tr>`
           

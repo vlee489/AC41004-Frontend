@@ -25,7 +25,7 @@ async function loadAccounts(){
                 let accountLink2 = accountLink;
             }
             
-            li += `<li><a class="dropdown-item" href=${accountLink2}>${user.name} (${user.reference})</a></li>`;
+            li += `<li><a class="dropdown-item" role="button" tabindex="0" href=${accountLink2} >${user.name} (${user.reference})</a></li>`;
             defaultAccountID = user.id;
         });
     
@@ -86,7 +86,7 @@ async function loadRules(){
                 li += `<tr>
                 <td>${name}</td>
                 <td >${length}</td>
-                <td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href=${accountLink2} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
 
               //for item in non compliant
@@ -144,7 +144,7 @@ async function loadOverdue(){
                 <td>${name}</td>
                 <td >${type}</td>
                 <td >${review}</td>
-                <td ><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                <td ><button type="button" class="btn btn-warning" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></button></td>
               </tr>`
             counter++;
         });
@@ -192,7 +192,7 @@ async function loadUpcoming(){
                 <td>${name}</td>
                 <td >${type}</td>
                 <td >${review}</td>
-                <td ><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                <td ><button type="button" class="btn btn-warning" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></button></td>
               </tr>`
             counter++;
         });

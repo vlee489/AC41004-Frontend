@@ -84,7 +84,7 @@ async function loadResources(non_compliant_resources){
             if (non_compliant_resources.includes(resourceID)){
                 li += `<tr>
                 <td>${name}</td>
-                <td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href=${accountLink2} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
             }
               //<td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
