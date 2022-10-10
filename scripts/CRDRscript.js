@@ -20,19 +20,21 @@ async function loadRules(){
           // Loop through each data and add a table row
           json.forEach(rule => {
             const name = rule['name'];
-            const type = rule['resource_type']['name'];
+            const ruleID = rule['id'];
             const compliant = rule['compliant'];
             
             if (compliant) {
                 li += `<tr>
                 <td>${name}</td>
                 <td><i class="fa-solid fa-check"></i></td>
+                <td><button type="button" tabindex="0" class="btn btn-warning" disabled><i class="fa-solid fa-plus"></i></button></td>
                 
               </tr>`
             } else{
                 li += `<tr>
                 <td>${name}</td>
                 <td><i class="fa-solid fa-xmark"></i></td>
+                <td><button type="button" tabindex="0" onclick="addException('${ruleID}')" class="btn btn-warning"><i class="fa-solid fa-plus"></i></button></td>
                 
               </tr>`
             }
@@ -138,9 +140,10 @@ function homePage(){
   window.location = accountLink;
 }
 
-function addException(){
+function addException(ruleID){
   //const params = new URLSearchParams(window.location.search);
   let accountLink = window.location.href;
   accountLink = accountLink.replace("CRDRIndex.html", "addException.html");
+  accountLink = `${accountLink}&ruleID=${ruleID}`;
   window.location = accountLink;
 }

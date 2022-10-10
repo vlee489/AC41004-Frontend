@@ -73,7 +73,7 @@ async function loadRules(){
             let accountLink = window.location.href;
             let accountLink2 = accountLink.replace("index.html", "ruleIndex.html");
             accountLink2 = `${accountLink2}&ruleName=${ruleID}`;
-            console.log(accountLink2);
+            
 
             //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
             // let accountLink2 = `${fixedAddress}CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
