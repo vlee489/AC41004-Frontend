@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
+<head>
+    <meta charset="UTF-8">
+    <title>Brightsolid - Add Exception</title>
+    <script defer src="scripts/addException.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <div class="container-fluid">
+      <a class="navbar-brand">brightsolid</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" id="home-link" role="button" tabindex="0" onclick="homePage()">Home</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<body class="background">
+
+    <div class="title-section card-body-style" style="padding-left: 30px; padding-top: 10px;">
+        <h1> Add Exception</h1>
+        <h3 id = "res-name"></h3>
+    </div>
+
+    <div class="row gx-5 m-5"> 
+        <div class="col">
+          <div class="card">
+            <div class="card-body card-body-style">
+                <form>
+                    <div>
+                        <h3>Review Date</h3>
+                        <label for="exception"></label>
+                        <input class ="pop-over" type="date" id="review-date" name="exception" placeholder="DD/MM/YYYY">
+                        <br><br>
+                    </div>
+                    
+                <div>
+                    <h3>Rules</h3>
+                    <!-- <select multiple aria-label="multiple select example" class="form-select pop-over"  aria-label="multiple select example" name="subject" id="subject"> -->
+                    <select multiple class="selectpicker pop-over" multiple data-selected-text-format="count > 1" id="subject">
+                    <option value="" selected="selected">ec2-hello</option>
+                    <option value="" >ebs-enumerate</option>
+                    <option value="" >asg-enumerate</option>
+                    <option value="" >efs-enumerate</option>
+                    <option value="" >app-elb-enumerate</option>
+                    <option value="" >eni-enumerate</option>
+                    <option value="" >lambda-enumerate</option>
+                    <option value="" >rds-enumerate</option>
+                    <option value="" >elb-enumerate</option>
+                    <option value="" >s3-enumerate</option>
+                    <option value="" >ebs-detect-unencrypted-volume</option>
+                    <option value="" >s3-detect-unauthorised-public-bucket</option>
+                    <option value="" >ec2-detect-unauthorised-public-instance</option>
+                    <option value="" >s3-detect-unencrypted-bucket</option>
+                  </select>
+                  <br><br>
+                </div>
+                
+                
+               
+                <div>
+                    <h3>Justification</h3>
+                    <label for="just"></label>
+                    <!-- <input type="text" i><br><br> -->
+                    <textarea class="form-control pop-over" id="justification" name="just" placeholder="Reason for adding exception"aria-label="With textarea"></textarea>
+                    <br><br>
+                </div>
+
+                <div class="table-style">
+                    <input class="btn btn-outline-warning"  id = "submit-button" type="submit" value="Submit">
+                </div>
+                
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</body>
+</html>

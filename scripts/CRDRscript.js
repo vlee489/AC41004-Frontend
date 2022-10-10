@@ -137,3 +137,10 @@ function homePage(){
   accountLink = accountLink.replace(URLresourceID, "");
   window.location = accountLink;
 }
+
+function addException(){
+  //const params = new URLSearchParams(window.location.search);
+  let accountLink = window.location.href;
+  accountLink = accountLink.replace("CRDRIndex.html", "addException.html");
+  window.location = accountLink;
+}
