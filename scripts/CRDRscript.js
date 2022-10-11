@@ -102,16 +102,17 @@ async function loadExceptions(){
         // Loop through each data and add a table row
         json.forEach(exception => {
           const name = exception['exception_value'];
+          const exceptionID = exception['id'];
           const date = exception['review_date'];
           const firstname = exception['last_updated_by']['first_name'];
           const surname = exception['last_updated_by']['last_name'];
-          const accountLink2 = '#';
+          
           
               li += `<tr>
               <td>${name}</td>
               <td>${firstname} ${surname}</td>
               <td>${date}</td>
-              <td><a href=${accountLink2} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+              <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               
             </tr>`
           
@@ -145,5 +146,13 @@ function addException(ruleID){
   let accountLink = window.location.href;
   accountLink = accountLink.replace("CRDRIndex.html", "addException.html");
   accountLink = `${accountLink}&ruleID=${ruleID}`;
+  window.location = accountLink;
+}
+
+function editException(exceptionID){
+  //const params = new URLSearchParams(window.location.search);
+  let accountLink = window.location.href;
+  accountLink = accountLink.replace("CRDRIndex.html", "editException.html");
+  accountLink = `${accountLink}&exceptionID=${exceptionID}`;
   window.location = accountLink;
 }
