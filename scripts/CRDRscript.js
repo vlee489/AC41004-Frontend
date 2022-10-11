@@ -20,19 +20,21 @@ async function loadRules(){
           // Loop through each data and add a table row
           json.forEach(rule => {
             const name = rule['name'];
-            const type = rule['resource_type']['name'];
+            const ruleID = rule['id'];
             const compliant = rule['compliant'];
             
             if (compliant) {
                 li += `<tr>
                 <td>${name}</td>
                 <td><i class="fa-solid fa-check"></i></td>
+                <td><button type="button" tabindex="0" class="btn btn-warning" disabled><i class="fa-solid fa-plus"></i></button></td>
                 
               </tr>`
             } else{
                 li += `<tr>
                 <td>${name}</td>
                 <td><i class="fa-solid fa-xmark"></i></td>
+                <td><button type="button" tabindex="0" onclick="addException('${ruleID}')" class="btn btn-warning"><i class="fa-solid fa-plus"></i></button></td>
                 
               </tr>`
             }
@@ -100,16 +102,17 @@ async function loadExceptions(){
         // Loop through each data and add a table row
         json.forEach(exception => {
           const name = exception['exception_value'];
+          const exceptionID = exception['id'];
           const date = exception['review_date'];
           const firstname = exception['last_updated_by']['first_name'];
           const surname = exception['last_updated_by']['last_name'];
-          const accountLink2 = '#';
+          
           
               li += `<tr>
               <td>${name}</td>
               <td>${firstname} ${surname}</td>
               <td>${date}</td>
-              <td><a href=${accountLink2} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+              <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               
             </tr>`
           
@@ -135,5 +138,21 @@ function homePage(){
   let URLresourceID = params.get("resourceID");
   URLresourceID = `&resourceID=${URLresourceID}`;
   accountLink = accountLink.replace(URLresourceID, "");
+  window.location = accountLink;
+}
+
+function addException(ruleID){
+  //const params = new URLSearchParams(window.location.search);
+  let accountLink = window.location.href;
+  accountLink = accountLink.replace("CRDRIndex.html", "addException.html");
+  accountLink = `${accountLink}&ruleID=${ruleID}`;
+  window.location = accountLink;
+}
+
+function editException(exceptionID){
+  //const params = new URLSearchParams(window.location.search);
+  let accountLink = window.location.href;
+  accountLink = accountLink.replace("CRDRIndex.html", "editException.html");
+  accountLink = `${accountLink}&exceptionID=${exceptionID}`;
   window.location = accountLink;
 }

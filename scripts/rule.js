@@ -74,8 +74,8 @@ async function loadResources(non_compliant_resources){
 
             let accountLink = window.location.href;
             let accountLink2 = accountLink.replace("ruleIndex.html", "CRDRIndex.html");
-            let idstring = `&ruleName=${ruleID}`;
-            accountLink2 = accountLink2.replace(idstring , "");
+            // let idstring = `&ruleName=${ruleID}`;
+            // accountLink2 = accountLink2.replace(idstring , "");
             accountLink2 = `${accountLink2}&resourceID=${resourceID}`;
             console.log(accountLink2);
             
