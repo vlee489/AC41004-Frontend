@@ -25,11 +25,13 @@ button.addEventListener('click', async _ => {
             credentials:"include"
         });
         
-        if(response.status == 200){
-           // validate success
-        }else{
-            // failed to add exception
-        }
+        if(response.status != 200){
+            // resultModalLabel
+            document.getElementById("resultModalLabel").innerHTML = "Failed to Create";
+            success = false;
+         }else{
+             document.getElementById("resultModalLabel").innerHTML = "Exception Created";
+         }
         
     } catch (err) {
         console.error(`Error: ${err}`);
@@ -45,6 +47,55 @@ function homePage(){
     accountLink = accountLink.replace(URLresourceID, "");
     window.location = accountLink;
   }
+  
+  function completedEdit(){
+    const params = new URLSearchParams(window.location.search);
+    let accountLink = window.location.href;
+    accountLink = accountLink.replace("addException.html", "CRDRIndex.html");
+    let URLexceptionID = params.get("exceptionID");
+    URLexceptionID = `&exceptionID=${URLexceptionID}`;
+    accountLink = accountLink.replace(URLexceptionID, "");
+    window.location = accountLink;
+  }
+  
+// Permission Checking code 
+
+permsPopup.addEventListener('hide.bs.modal', function(){
+    window.location.replace("/index.html");
+})
+
+async function getPermissions() {
+    /**
+     * Get the permissions of the user
+     */
+    try {
+        const response = await fetch('https://itp.vlee.me.uk/user/permissions', {
+            method: 'get',
+            credentials: "include"
+        })
+        if (response.ok) {
+            const data = await response.json()
+            return data['role']['level']
+        }else if([401, 404].includes(response.status)){
+            window.location.replace("/loginIndex.html");
+          }
+    } catch (err) {
+        console.error(`Error: ${err}`)
+    }
+}
+
+async function permissionRedirect(level = 0) {
+    if (level < 1) {
+        const permsPopupModal = new bootstrap.Modal(document.getElementById("badPermsModal"), {});
+        permsPopupModal.show();
+    }
+}
+
+(async () => {
+    const permissionLevel = await getPermissions();
+    permissionRedirect(permissionLevel)
+})()
+
 
   
 // Permission Checking code 

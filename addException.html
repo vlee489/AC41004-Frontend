@@ -33,21 +33,38 @@
     <h3 id="res-name"></h3>
   </div>
 
-  <div class="row gx-5 m-5">
-    <div class="col">
-      <div class="card">
-        <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
-          Exception Details
-          <span class="badge bg-primary rounded-pill float-right mt-2" id="upcoming-counter"></span>
-        </div>
-        <div class="card-body card-body-style">
-
-
-          <div class="mb-3">
-
-            <label for="review-date">Review Date</label>
-            <input class="pop-over" type="date" id="review-date" name="review-date" placeholder="DD/MM/YYYY">
-            <br><br>
+    <div class="row gx-5 m-5"> 
+        <div class="col">
+          <div class="card">
+            <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
+              Exception Details
+              <span class="badge bg-primary rounded-pill float-right mt-2" id="upcoming-counter" ></span>
+            </div>
+            <div class="card-body card-body-style">
+                
+              
+                    <div class="mb-3">
+                        
+                        <label for="review-date">Review Date</label>
+                        <input class ="pop-over" type="date" id="review-date" name="review-date" placeholder="DD/MM/YYYY">
+                        <br><br>
+                    </div>
+                    
+            
+                  
+                <div class="mb-3">
+                      <label for="justification" class="form-label">Justification</label>
+                      <textarea class="form-control pop-over" id="justification" rows="3"></textarea>
+                      <br>
+                    </div>
+                
+                <div class="table-style">
+                    <input class="btn btn-outline-warning"  id = "submit-button" type="submit" value="Add Exception" data-bs-toggle="modal" data-bs-target="#resultModal">
+                    
+                </div>
+                
+                
+            </div>
           </div>
 
 
@@ -69,6 +86,20 @@
     </div>
   </div>
 
+      <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-warning">
+              <h5 class="modal-title" id="resultModalLabel"></h5>
+            </div>
+            
+            <div class="modal-footer pop-over">
+              <button type="button" class="btn btn-outline-warning " data-bs-dismiss="modal" onclick="window.location.reload();">Close</button>
+              <button type="button" class="btn btn-outline-warning" onclick="completedEdit()">Return To Report</button>
+            </div>
+          </div>
+        </div>
+      </div>
   <div class="modal fade" id="badPermsModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
