@@ -8,9 +8,6 @@ async function loadRules(){
      let ruleIDURL = params.get("ruleName");
      let ruleName = '';
 
-     // ruleIndex.html?id=633ad7aca938b45d958ae772&rule=name
-    
-    
     const response = await fetch(`https://itp.vlee.me.uk/ruleOverview/${URLaccountID}`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
@@ -74,10 +71,10 @@ async function loadResources(non_compliant_resources){
 
             let accountLink = window.location.href;
             let accountLink2 = accountLink.replace("ruleIndex.html", "CRDRIndex.html");
-            // let idstring = `&ruleName=${ruleID}`;
-            // accountLink2 = accountLink2.replace(idstring , "");
+            let idstring = `&ruleName=${ruleID}`;
+            accountLink2 = accountLink2.replace(idstring , "");
             accountLink2 = `${accountLink2}&resourceID=${resourceID}`;
-            console.log(accountLink2);
+           
             
 
             
@@ -103,7 +100,6 @@ async function loadResources(non_compliant_resources){
 
 loadRules();
 
-loadExceptions();
 
 function homePage(){
   const params = new URLSearchParams(window.location.search);

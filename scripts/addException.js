@@ -24,11 +24,13 @@ button.addEventListener('click', async _ => {
             credentials:"include"
         });
         
-        if(response.status == 200){
-           // validate success
-        }else{
-            // failed to add exception
-        }
+        if(response.status != 200){
+            // resultModalLabel
+            document.getElementById("resultModalLabel").innerHTML = "Failed to Create";
+            success = false;
+         }else{
+             document.getElementById("resultModalLabel").innerHTML = "Exception Created";
+         }
         
     } catch (err) {
         console.error(`Error: ${err}`);
@@ -47,4 +49,13 @@ function homePage(){
     window.location = accountLink;
   }
 
+  function completedEdit(){
+    const params = new URLSearchParams(window.location.search);
+    let accountLink = window.location.href;
+    accountLink = accountLink.replace("addException.html", "CRDRIndex.html");
+    let URLexceptionID = params.get("exceptionID");
+    URLexceptionID = `&exceptionID=${URLexceptionID}`;
+    accountLink = accountLink.replace(URLexceptionID, "");
+    window.location = accountLink;
+  }
   

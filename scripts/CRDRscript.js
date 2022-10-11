@@ -1,10 +1,7 @@
 async function loadRules(){
     
     try {     
-     //633ad7aca938b45d958ae772
-
-     // id=633ad7aca938b45d958ae772& resourceID=633afdf0996f8335ccc1b555
-
+     
      const params = new URLSearchParams(window.location.search);
       let URLresourceID = params.get("resourceID");
 
@@ -83,11 +80,8 @@ loadResourceName();
 async function loadExceptions(){
     
   try {     
-   //633ad7aca938b45d958ae772
 
-   // id=633ad7aca938b45d958ae772& resourceID=633afdf0996f8335ccc1b555
-
-   const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   let URLresourceID = params.get("resourceID");
 
   //${URLresourceID}
@@ -106,18 +100,27 @@ async function loadExceptions(){
           const date = exception['review_date'];
           const firstname = exception['last_updated_by']['first_name'];
           const surname = exception['last_updated_by']['last_name'];
+          const suspended = exception['suspended'];
           
-          
-              li += `<tr>
-              <td>${name}</td>
-              <td>${firstname} ${surname}</td>
-              <td>${date}</td>
-              <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
-              
-            </tr>`
-          
-
-          
+          if(suspended){
+            li += `<tr>
+            <td>${name}</td>
+            <td>${firstname} ${surname}</td>
+            <td>${date}</td>
+            <td><i class="fa-solid fa-check"></i></td>
+            <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+            
+          </tr>`
+          }else{
+            li += `<tr>
+            <td>${name}</td>
+            <td>${firstname} ${surname}</td>
+            <td>${date}</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+            <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+            
+          </tr>`
+          }
       });
     // Display result
     document.getElementById("crdr-exception-table").innerHTML = li;
@@ -130,6 +133,99 @@ async function loadExceptions(){
 }
 
 loadExceptions();
+
+async function loadComplianceAudit(){
+    
+  try {     
+   
+   const params = new URLSearchParams(window.location.search);
+    let URLresourceID = params.get("resourceID");
+
+  //${URLresourceID}
+  const response = await fetch(`https://itp.vlee.me.uk/compliance/resource/${URLresourceID}`, {
+      headers: {"Content-type": "application/json"},
+      method: 'get',
+      credentials:"include"
+    }).then(response => response.json())
+    .then(json => {
+        // Create a variable to store HTML
+        let li = ``;
+        // Loop through each data and add a table row
+        json.forEach(value => {
+          const name = value['rule']['name'];
+          const firstname = value['user']['first_name'];
+          const surname = value['user']['last_name'];
+          const action = value['action'];
+          const actionDate = value['action_datetime'];
+          
+         
+              li += `<tr>
+              <td>${name}</td>
+              <td>${action}</td>
+              <td>${firstname} ${surname}</td>
+              <td>${actionDate}</td>
+              
+            </tr>`
+        
+      });
+    // Display result
+    document.getElementById("compliance-audit-table").innerHTML = li;
+
+    
+});
+  } catch(err) {
+    console.error(`Error: ${err}`);
+  }
+}
+
+loadComplianceAudit();
+
+async function loadExceptionAudit(){
+    
+  try {     
+   
+   const params = new URLSearchParams(window.location.search);
+    let URLresourceID = params.get("resourceID");
+
+  //${URLresourceID}
+  const response = await fetch(`https://itp.vlee.me.uk/compliance/resource/${URLresourceID}`, {
+      headers: {"Content-type": "application/json"},
+      method: 'get',
+      credentials:"include"
+    }).then(response => response.json())
+    .then(json => {
+        // Create a variable to store HTML
+        let li = ``;
+        // Loop through each data and add a table row
+        json.forEach(value => {
+          const name = value['rule']['name'];
+          const firstname = value['user']['first_name'];
+          const surname = value['user']['last_name'];
+          const action = value['action'];
+          const actionDate = value['action_datetime'];
+          
+         
+              li += `<tr>
+              <td>${name}</td>
+              <td>${action}</td>
+              <td>${firstname} ${surname}</td>
+              <td>${actionDate}</td>
+              
+            </tr>`
+        
+      });
+    // Display result
+    document.getElementById("exception-audit-table").innerHTML = li;
+
+    
+});
+  } catch(err) {
+    console.error(`Error: ${err}`);
+  }
+}
+
+loadExceptionAudit();
+
 
 function homePage(){
   const params = new URLSearchParams(window.location.search);

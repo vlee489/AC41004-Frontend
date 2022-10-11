@@ -49,12 +49,14 @@ async function loadRules(){
      await loadAccounts();
      const params = new URLSearchParams(window.location.search);
      let non_compliant_resources = [];
+     
     let URLaccountID = params.get("id");
     if (URLaccountID == null){
         URLaccountID = defaultAccountID;
         let newURL = `${window.location.href}?id=${URLaccountID}`;
         window.location.replace(newURL);
     }
+
     const response = await fetch(`https://itp.vlee.me.uk/ruleOverview/${URLaccountID}`, {
         headers: {"Content-type": "application/json"},
         method: 'get',

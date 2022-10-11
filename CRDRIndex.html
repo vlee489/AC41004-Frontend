@@ -41,6 +41,7 @@
                   <th scope="col">Exception Name</th>
                   <th scope="col">Added By</th>
                   <th scope="col">Next Review</th>
+                  <th scope="col">Suspended</th>
                   <th scope="col">Edit Exception</th>
                 </tr>
               </thead>
@@ -90,25 +91,14 @@
                 <thead class="text-center">
                   <tr>
                     <th scope="col">Rule Name</th>
-                    <th scope="col">Non-Compliant Date</th>
-                    <th scope="col">Current Compliance</th>
-                    <th scope="col">More Details</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Date</th>
                   </tr>
                 </thead>
-                <tbody class="text-center" id = "resource-audit-table">
+                <tbody class="text-center" id = "compliance-audit-table">
                   <!--read this from db-->
-                  <tr>
-                    <th>s3-detect-unauthorised-public-bucket</th>
-                    <td>1/02/2022</td>
-                    <td><i class="fa-solid fa-check"></i></td>
-                    <td><button type="button" tabindex="0" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                  </tr>
-                  <tr>
-                    <th>s3-detect-unencrypted-bucket</th>
-                    <td>23/09/2022</td>
-                    <td><i class="fa-solid fa-xmark"></i></td>
-                    <td><button type="button" tabindex="0" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -116,48 +106,7 @@
         </div>
       </div>
 
-      <div class="row gx-5 m-5"> 
-        <div class="col">
-          <div class="card">
-            <div class="card-header bg-warning" tabindex="0">
-              Audit Trail: Exception
-            </div>
-            <div class="card-body long-dyn-height card-body-style">
-              <table class="table table-dark table-striped">
-                <thead class="text-center">
-                  <tr>
-                    <th scope="col">Exception Name</th>
-                    <th scope="col">Added By</th>
-                    <th scope="col">Added On</th>
-                    <th scope="col">Revoked On</th>
-                    <th scope="col">Active</th>
-                    <th scope="col">More Actions</th>
-                  </tr>
-                </thead>
-                <tbody class="text-center" id = "exception-audit-table">
-                  <!--read this from db-->
-                  <tr>
-                    <th>Unencrypted S3 Bucket</th>
-                    <td>Admin 1</td>
-                    <td>1/10/2022</td>
-                    <td>N/A</td>
-                    <td><i class="fa-solid fa-check"></i></td>
-                    <td><button type="button" tabindex="0" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                  </tr>
-                  <tr>
-                    <th>S3 Bucket set to Public</th>
-                    <td>Admin 2</td>
-                    <td>5/9/2022</td>
-                    <td>27/9/2022</td>
-                    <td><i class="fa-solid fa-xmark"></i></td>
-                    <td><button type="button" tabindex="0" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+      
   
   </body>
 
