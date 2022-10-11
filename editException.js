@@ -23,7 +23,7 @@ async function loadExceptionAudit(){
               const reason = exception['new_justification'];
 
               if (name) {
-                  li += `<tr>
+                  li =`<tr>
                 <td>${name}</td>
                 <td>${user}</td>
                 <td>${date}</td>

@@ -7,19 +7,33 @@
     <link rel="stylesheet" href="styles.css">
 
 </head>
-<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <div class="container-fluid">
+        <a class="navbar-brand">brightsolid</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="home-link" role="button" tabindex="0" onclick="homePage()">Home</a>
+                </li>
 
-<h1>Audit Log</h1>
-<div class="row gx-5 m-5">
-    <div class="col">
-        <div class="card">
-            <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
-                Exceptions
-                <button type="button" class="btn btn-outline-dark float-right mt-2">Add New Exception</button>
-            </div>
-            <div class="card-body long-dyn-height card-body-style">
-                <table class="table table-dark table-striped">
-                    <thead class="text-center">
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body class="background">
+<div class="title-section card-body-style" style="padding-left: 30px; padding-top: 10px;">
+    <h1> Audit Log</h1>
+    <h3 id = "res-name"></h3>
+    <div class="row gx-5 m-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-body long-dyn-height card-body-style">
+                    <table class="table table-dark table-striped">
+                        <thead class="text-center">
                     <tr>
                         <th scope="col">Exception Name</th>
                         <th scope="col">Added By</th>
@@ -39,5 +53,6 @@
         </div>
     </div>
 </div>
+   </div>
 </body>
 </html>
