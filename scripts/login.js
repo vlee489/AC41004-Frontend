@@ -12,10 +12,8 @@ button.addEventListener('click', async _ => {
             method: 'post',
             body: JSON.stringify(loginBody)
         });
-        let emailAdd = document.getElementById("email").value;
-        let passwordAdd = document.getElementById("password").value;
-        //test values
-        if (emailAdd === "test@test.com" && passwordAdd === "testPassword") {
+        //check if response is ~200
+        if (response.ok) {
             window.location.replace("index.html");
         } else {
             alert("Please make sure your username and password is entered correctly.");
