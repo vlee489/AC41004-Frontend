@@ -1,3 +1,16 @@
+
+// function popUp(){
+//   const params = new URLSearchParams(window.location.search);
+//   let exists = params.has("success");
+//   if (exists){
+//     let URLsuccess = params.get("success");
+//     if (URLsuccess){
+//       //do
+//     }
+//   }
+  
+// }
+
 async function loadRules(){
     
     try {     
@@ -106,15 +119,28 @@ async function loadExceptions(){
           const date = exception['review_date'];
           const firstname = exception['last_updated_by']['first_name'];
           const surname = exception['last_updated_by']['last_name'];
+          const suspended = exception['suspended'];
           
-          
-              li += `<tr>
-              <td>${name}</td>
-              <td>${firstname} ${surname}</td>
-              <td>${date}</td>
-              <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
-              
-            </tr>`
+          if(suspended){
+            li += `<tr>
+            <td>${name}</td>
+            <td>${firstname} ${surname}</td>
+            <td>${date}</td>
+            <td><i class="fa-solid fa-check"></i></td>
+            <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+            
+          </tr>`
+          }else{
+            li += `<tr>
+            <td>${name}</td>
+            <td>${firstname} ${surname}</td>
+            <td>${date}</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+            <td><a class="btn btn-warning" onclick="editException('${exceptionID}')" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+            
+          </tr>`
+          }
+             
           
 
           

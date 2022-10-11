@@ -5,6 +5,9 @@ const justification = document.getElementById('justification');
 
 let exceptionValue = '';
 let suspended = false;
+let success = true;
+
+loadExceptions();
 
 editButton.addEventListener('click', async _ => {
     const date = new Date(reviewDate.value);
@@ -14,7 +17,7 @@ editButton.addEventListener('click', async _ => {
     
 
     // get values for suspended and exception_value
-    await loadExceptions();
+    
 
     let exceptionBody = {
         "exception_value": exceptionValue,
@@ -24,7 +27,7 @@ editButton.addEventListener('click', async _ => {
 
     }
 
-    console.log(JSON.stringify(exceptionBody));
+    
     try {
         const response = await fetch(`https://itp.vlee.me.uk/exceptions/${URLexceptionID}`, {
             headers: {"Content-type": "application/json"},
@@ -33,12 +36,15 @@ editButton.addEventListener('click', async _ => {
             credentials:"include"
         });
         
-        if(response.status == 200){
-           // validate success
-           console.log('success');
-        }else{
-            // failed to add exception
-        }
+        
+        if(response.status != 200){
+            success = false;
+            document.getElementById("resultModalLabel").innerHTML = "Failed to Update";
+         }else{
+            document.getElementById("resultModalLabel").innerHTML = "Successfully Edited";
+         }
+         
+         //completedEdit();
         
     } catch (err) {
         console.error(`Error: ${err}`);
@@ -72,6 +78,12 @@ async function loadExceptions(){
                 exceptionValue = exception['exception_value'];
                 suspended = exception['suspended'];
             }  
+
+            if (suspended){
+                document.getElementById("suspend-button").value = "Remove Suspension";
+            }else{
+                document.getElementById("suspend-button").value = "Suspend Exception";
+            }
         });   
   });
     } catch(err) {
@@ -84,18 +96,18 @@ suspendButton.addEventListener('click', async _ => {
     // const iso = date.toISOString();
     const params = new URLSearchParams(window.location.search);
     let URLexceptionID = params.get("exceptionID");
-    
+    let suspendedValue = true;
+    let message = '';
 
     // get values for suspended and exception_value
     await loadExceptions();
 
     let exceptionBody = {
-        
-        "suspended": true
-
+        "suspended": !suspended
     }
+    
 
-    console.log(JSON.stringify(exceptionBody));
+    
     try {
         const response = await fetch(`https://itp.vlee.me.uk/exceptions/${URLexceptionID}`, {
             headers: {"Content-type": "application/json"},
@@ -104,14 +116,29 @@ suspendButton.addEventListener('click', async _ => {
             credentials:"include"
         });
 
-        document.getElementById("suspend-button").value = "Remove Suspension";
-        
-        if(response.status == 200){
-           // validate success
-           console.log('success');
-        }else{
-            // failed to add exception
+        if(document.getElementById("suspend-button").value == "Remove Suspension"){
+
         }
+
+        if (suspended){
+            document.getElementById("suspend-button").value = "Remove Suspension";
+            message = "Suspension Removed";
+
+        }else{
+            document.getElementById("suspend-button").value = "Suspend Exception";
+            message = "Exception Suspended";
+        }
+        
+        
+        if(response.status != 200){
+           // resultModalLabel
+           document.getElementById("resultModalLabel").innerHTML = "Failed to Update";
+           success = false;
+        }else{
+            document.getElementById("resultModalLabel").innerHTML = message;
+        }
+
+       //completedEdit();
         
     } catch (err) {
         console.error(`Error: ${err}`);
@@ -126,6 +153,16 @@ function homePage(){
     let URLresourceID = params.get("resourceID");
     URLresourceID = `&resourceID=${URLresourceID}`;
     accountLink = accountLink.replace(URLresourceID, "");
+    window.location = accountLink;
+  }
+
+  function completedEdit(){
+    const params = new URLSearchParams(window.location.search);
+    let accountLink = window.location.href;
+    accountLink = accountLink.replace("editException.html", "CRDRIndex.html");
+    let URLexceptionID = params.get("exceptionID");
+    URLexceptionID = `&exceptionID=${URLexceptionID}`;
+    accountLink = accountLink.replace(URLexceptionID, "");
     window.location = accountLink;
   }
 

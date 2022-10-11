@@ -54,8 +54,8 @@
                     </div>
                 
                 <div class="table-style">
-                    <input class="btn btn-outline-warning"  id = "submit-button" type="submit" value="Edit Exception">
-                    <input class="btn btn-outline-warning"  id = "suspend-button" type="submit" value="Suspend Exception">
+                    <input class="btn btn-outline-warning"  id = "submit-button" type="submit" value="Edit Exception" data-bs-toggle="modal" data-bs-target="#resultModal">
+                    <input class="btn btn-outline-warning"  id = "suspend-button" type="submit" value="Suspend Exception" data-bs-toggle="modal" data-bs-target="#resultModal">
                 </div>
                 
                 
@@ -63,6 +63,23 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-warning">
+              <h5 class="modal-title" id="resultModalLabel"></h5>
+            </div>
+            
+            <div class="modal-footer pop-over">
+              <button type="button" class="btn btn-outline-warning " data-bs-dismiss="modal" onclick="window.location.reload();">Close</button>
+              <button type="button" class="btn btn-outline-warning" onclick="completedEdit()">Return To Report</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
 
 </body>
