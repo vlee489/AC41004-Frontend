@@ -42,7 +42,7 @@ async function loadAccounts(){
 
 
 // Fetches compliance rules and the number of non-compliant resources into the Compliance Rules tables
-async function loadRules(){
+async function loadRules(filterType){
     
     try {     
      //633ad7aca938b45d958ae772
@@ -79,23 +79,36 @@ async function loadRules(){
             // let accountLink2 = `${fixedAddress}CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
 
             
-
-
-            
-            if (length >0) {
-                li += `<tr>
+if(filterType === 'nonValues')
+{
+    if (length > 0) {
+    li += `<tr>
                 <td>${name}</td>
                 <td >${length}</td>
                 <td><a href=${accountLink2} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
 
-              //for item in non compliant
-              //resource id add to list
-              user['non_compliant'].forEach(resourceid => {
-                non_compliant_resources.push(resourceid);
-              });
-              
-            }
+    //for item in non compliant
+    //resource id add to list
+    user['non_compliant'].forEach(resourceid => {
+        non_compliant_resources.push(resourceid);
+    });
+
+}} else
+{
+    li += `<tr>
+                <td>${name}</td>
+                <td >${length}</td>
+                <td><a href=${accountLink2} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
+              </tr>`
+
+    //for item in non compliant
+    //resource id add to list
+    user['non_compliant'].forEach(resourceid => {
+        non_compliant_resources.push(resourceid);
+    });
+}
+
         });
       // Display result
       
@@ -107,9 +120,12 @@ async function loadRules(){
     }
 }
 
-loadRules();
+loadRules('allRules');
 
-
+function filterApply(filterType)
+{
+    loadRules(filterType);
+}
 
 async function loadOverdue(){
     
