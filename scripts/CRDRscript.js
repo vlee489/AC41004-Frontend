@@ -10,8 +10,8 @@ async function getPermissions() {
     if (response.ok) {
       const data = await response.json()
       return data['role']['level']
-    }else if( 400 >= response.status < 500){
-      window.location.replace("/index.html");
+    }else if([401, 404].includes(response.status)){
+      window.location.replace("/loginIndex.html");
     }
   } catch (err) {
     console.error(`Error: ${err}`)
