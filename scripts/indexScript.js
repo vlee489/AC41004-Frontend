@@ -2,6 +2,33 @@ let defaultAccountID = '';
 let fixedAddress = ' ';
 let homeAddress = ' ';
 
+async function checkUrl(){
+  /**
+   * Checks if the URL has index.html, if not redirect to index.html
+   * this is a bodge to fix IDs not working correctly when not on index.html
+   */
+  if(!(location.href.match(/index.html/))){
+    window.location.replace("/index.html");
+  }
+}
+
+async function getPermissions() {
+  /**
+   * Get the permissions of the user
+   */
+  try {
+    const response = await fetch('https://itp.vlee.me.uk/user/permissions', {
+      method: 'get',
+      credentials: "include"
+    })
+    if([401, 404].includes(response.status)){
+      window.location.replace("/loginIndex.html");
+    }
+  } catch (err) {
+    console.error(`Error: ${err}`)
+  }
+}
+
 // Loads accounts user has access to into Accounts Dropdown in Nav Bar
 async function loadAccounts(){
   try {     
@@ -107,9 +134,6 @@ async function loadRules(){
     }
 }
 
-loadRules();
-
-
 
 async function loadOverdue(){
     
@@ -158,7 +182,6 @@ async function loadOverdue(){
     }
 }
 
-loadOverdue();
 
 async function loadUpcoming(){
     try {     
@@ -206,7 +229,6 @@ async function loadUpcoming(){
     }
 }
 
-loadUpcoming();
 
 async function loadChartValues(){
     try {     
@@ -259,4 +281,13 @@ async function loadChartValues(){
     }
 }
 
-loadChartValues();
+
+
+(async () => {
+  await checkUrl()
+  await getPermissions();
+  loadRules();
+  loadOverdue();
+  loadUpcoming();
+  loadChartValues();
+})()
