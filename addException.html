@@ -1,69 +1,92 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="styles.css">
 <script defer src="scripts/addException.js"></script>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-    <div class="container-fluid">
-      <a class="navbar-brand">brightsolid</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" id="home-link" role="button" tabindex="0" onclick="homePage()">Home</a>
-          </li>
-          
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand">brightsolid</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" id="home-link" role="button" tabindex="0"
+            onclick="homePage()">Home</a>
+        </li>
+
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
 <body class="background">
 
-    <div class="title-section card-body-style" style="padding-left: 30px; padding-top: 10px;">
-        <h1>Add Exception</h1>
-        <h3 id = "res-name"></h3>
-    </div>
+  <div class="title-section card-body-style" style="padding-left: 30px; padding-top: 10px;">
+    <h1>Add Exception</h1>
+    <h3 id="res-name"></h3>
+  </div>
 
-    <div class="row gx-5 m-5"> 
-        <div class="col">
-          <div class="card">
-            <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
-              Exception Details
-              <span class="badge bg-primary rounded-pill float-right mt-2" id="upcoming-counter" ></span>
-            </div>
-            <div class="card-body card-body-style">
-                
-              
-                    <div class="mb-3">
-                        
-                        <label for="review-date">Review Date</label>
-                        <input class ="pop-over" type="date" id="review-date" name="review-date" placeholder="DD/MM/YYYY">
-                        <br><br>
-                    </div>
-                    
-            
-                  
-                <div class="mb-3">
-                      <label for="justification" class="form-label">Justification</label>
-                      <textarea class="form-control pop-over" id="justification" rows="3"></textarea>
-                      <br>
-                    </div>
-                
-                <div class="table-style">
-                    <input class="btn btn-outline-warning"  id = "submit-button" type="submit" value="Add Exception">
-                    
-                </div>
-                
-                
-            </div>
+  <div class="row gx-5 m-5">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-warning d-flex justify-content-between" tabindex="0">
+          Exception Details
+          <span class="badge bg-primary rounded-pill float-right mt-2" id="upcoming-counter"></span>
+        </div>
+        <div class="card-body card-body-style">
+
+
+          <div class="mb-3">
+
+            <label for="review-date">Review Date</label>
+            <input class="pop-over" type="date" id="review-date" name="review-date" placeholder="DD/MM/YYYY">
+            <br><br>
           </div>
+
+
+
+          <div class="mb-3">
+            <label for="justification" class="form-label">Justification</label>
+            <textarea class="form-control pop-over" id="justification" rows="3"></textarea>
+            <br>
+          </div>
+
+          <div class="table-style">
+            <input class="btn btn-outline-warning" id="submit-button" type="submit" value="Add Exception">
+
+          </div>
+
+
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="badPermsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Insufficant Permissions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          You don't have permission to be here
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="badPermsHome">Go Home</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </body>
+
 </html>

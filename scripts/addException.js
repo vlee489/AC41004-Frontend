@@ -1,6 +1,7 @@
 const button = document.getElementById('submit-button');
 const reviewDate = document.getElementById('review-date');
 const justification = document.getElementById('justification');
+const permsPopup = document.getElementById('badPermsModal');  // For perms checking Modal
 
 
 button.addEventListener('click', async _ => {
@@ -35,8 +36,6 @@ button.addEventListener('click', async _ => {
     }
 });
 
-
-
 function homePage(){
     const params = new URLSearchParams(window.location.search);
     let accountLink = window.location.href;
@@ -48,3 +47,38 @@ function homePage(){
   }
 
   
+// Permission Checking code 
+
+permsPopup.addEventListener('hide.bs.modal', function(){
+    window.location.replace("/index.html");
+})
+
+async function getPermissions() {
+    /**
+     * Get the permissions of the user
+     */
+    try {
+        const response = await fetch('https://itp.vlee.me.uk/user/permissions', {
+            method: 'get',
+            credentials: "include"
+        })
+        if (response.ok) {
+            const data = await response.json()
+            return data['role']['level']
+        }
+    } catch (err) {
+        console.error(`Error: ${err}`)
+    }
+}
+
+async function permissionRedirect(level = 0) {
+    if (level < 1) {
+        const permsPopupModal = new bootstrap.Modal(document.getElementById("badPermsModal"), {});
+        permsPopupModal.show();
+    }
+}
+
+(async () => {
+    const permissionLevel = await getPermissions();
+    permissionRedirect(permissionLevel)
+})()
