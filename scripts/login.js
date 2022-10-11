@@ -10,6 +10,7 @@ button.addEventListener('click', async _ => {
         const response = await fetch('https://itp.vlee.me.uk/session/login', {
             headers: {"Content-type": "application/json"},
             method: 'post',
+            credentials:"include",
             body: JSON.stringify(loginBody)
         });
         //check if response is ~200
