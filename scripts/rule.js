@@ -1,3 +1,19 @@
+async function getPermissions() {
+  /**
+   * Get the permissions of the user
+   */
+  try {
+    const response = await fetch('https://itp.vlee.me.uk/user/permissions', {
+      method: 'get',
+      credentials: "include"
+    })
+    if ([401, 404].includes(response.status)) {
+      window.location.replace("/loginIndex.html");
+    }
+  } catch (err) {
+    console.error(`Error: ${err}`)
+  }
+}
 
 // Fetches compliance rules and the number of non-compliant resources into the Compliance Rules tables
 async function loadRules(){
@@ -98,8 +114,6 @@ async function loadResources(non_compliant_resources){
     }
 }
 
-loadRules();
-
 
 function homePage(){
   const params = new URLSearchParams(window.location.search);
@@ -110,3 +124,8 @@ function homePage(){
   accountLink = accountLink.replace(URLresourceID, "");
   window.location = accountLink;
 }
+
+(async () => {
+  await getPermissions();
+  loadRules();
+})()
