@@ -7,26 +7,53 @@ async function updateUrlPram(updateKey, newValue) {
     const currentParams = new URLSearchParams(window.location.search);
     const newParams = new URLSearchParams();
     currentParams.forEach((value, key) => {
-      if (key != updateKey) {
-        newParams.append(key, value);
-      } else {
-        newParams.append(updateKey, newValue);
-      }
+        if (key != updateKey) {
+            newParams.append(key, value);
+        } else {
+            newParams.append(updateKey, newValue);
+        }
     });
     if (!newParams.has(updateKey)) {
-      newParams.append(updateKey, newValue);
+        newParams.append(updateKey, newValue);
     }
     let newURL = `${baseUrl}?${newParams.toString()}`;
     window.location.replace(newURL);
-  }
-  
-  function getNewUrl(page, key, value) {
+}
+
+function getNewUrl(page, updateKey = null, newValue = null) {
     /**
      * Get link to new page with new key value for URL param
      */
     let accountLink2 = window.location.origin
     const currentParams = new URLSearchParams(window.location.search);
-    currentParams.append(key, value)
-    newLink = `${accountLink2}/${page}?${currentParams.toString()}`
+    let newParams = new URLSearchParams(window.location.search);
+
+    if (!(updateKey == null) && !(newValue == null)) {
+        newParams = new URLSearchParams();
+        currentParams.forEach((value, key) => {
+            if (key != updateKey) {
+                newParams.append(key, value);
+            } else {
+                newParams.append(updateKey, newValue);
+            }
+            if (!newParams.has(updateKey)) {
+                newParams.append(updateKey, newValue);
+            }
+        });
+    } else if (!(updateKey == null) && (newValue == null)){
+        newParams.delete(updateKey)
+    }
+    
+    newLink = `${accountLink2}/${page}?${newParams.toString()}`
     return newLink
-  }
+}
+
+function getHomeURL(){
+    let orginURL = window.location.origin
+    const currentParams = new URLSearchParams(window.location.search);
+    if (currentParams.has("id")){
+        return `${orginURL}/?id=${currentParams.get("id")}`
+    }else{
+        return `${orginURL}}`
+    }
+}
