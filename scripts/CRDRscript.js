@@ -303,14 +303,8 @@ async function loadComplianceAudit() {
 // }
 
 
-function homePage() {
-  const params = new URLSearchParams(window.location.search);
-  let accountLink = window.location.href;
-  accountLink = accountLink.replace("CRDRIndex.html", "index.html");
-  let URLresourceID = params.get("resourceID");
-  URLresourceID = `&resourceID=${URLresourceID}`;
-  accountLink = accountLink.replace(URLresourceID, "");
-  window.location = accountLink;
+function homePage(){
+  window.location = getHomeURL();
 }
 
 function addException(ruleID) {

@@ -100,14 +100,8 @@ async function loadResources(non_compliant_resources){
             
 
             let accountLink = window.location.href;
-            let accountLink2 = accountLink.replace("ruleIndex.html", "CRDRIndex.html");
-            let idstring = `&ruleName=${ruleID}`;
-            accountLink2 = accountLink2.replace(idstring , "");
-            accountLink2 = `${accountLink2}&resourceID=${resourceID}`;
+            let accountLink2 = getNewUrl("CRDRIndex.html", "resourceID", resourceID)
            
-            
-
-            
             if (non_compliant_resources.includes(resourceID)){
                 li += `<tr>
                 <td>${name}</td>
@@ -130,13 +124,7 @@ async function loadResources(non_compliant_resources){
 
 
 function homePage(){
-  const params = new URLSearchParams(window.location.search);
-  let accountLink = window.location.href;
-  accountLink = accountLink.replace("ruleIndex.html", "index.html");
-  let URLresourceID = params.get("ruleName");
-  URLresourceID = `&ruleName=${URLresourceID}`;
-  accountLink = accountLink.replace(URLresourceID, "");
-  window.location = accountLink;
+  window.location = getHomeURL();
 }
 
 (async () => {

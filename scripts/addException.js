@@ -52,15 +52,9 @@ async function logOut()
   }
 }
 
-function homePage() {
-    const params = new URLSearchParams(window.location.search);
-    let accountLink = window.location.href;
-    accountLink = accountLink.replace("addException.html", "index.html");
-    let URLresourceID = params.get("resourceID");
-    URLresourceID = `&resourceID=${URLresourceID}`;
-    accountLink = accountLink.replace(URLresourceID, "");
-    window.location = accountLink;
-}
+function homePage(){
+    window.location = getHomeURL();
+  }
 
 function completedEdit() {
     const params = new URLSearchParams(window.location.search);
