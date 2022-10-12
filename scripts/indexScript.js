@@ -92,7 +92,7 @@ async function loadRules(filterType) {
           const length = user['non_compliant'].length;
           const ruleID = user['rule']['id'];
 
-          let accountLink2 = getNewUrl("ruleIndex.html", "ruleName", ruleID)
+          let accountLink = getNewUrl("ruleIndex.html", "ruleName", ruleID);
 
 
           //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
@@ -167,9 +167,8 @@ async function loadOverdue() {
           const review = user['review_date'];
           const resourceID = user['resource']['id'];
 
-          let accountLink = window.location.href;
-          accountLink = accountLink.replace("index.html", "CRDRIndex.html");
-          accountLink = `${accountLink}&resourceID=${resourceID}`;
+          let accountLink = getNewUrl("CRDRIndex.html", "resourceID", resourceID);
+
 
           li += `<tr>
                 <td>${name}</td>
@@ -213,10 +212,9 @@ async function loadUpcoming() {
           const review = user['review_date'];
           const resourceID = user['resource']['id'];
 
+          let accountLink = getNewUrl("CRDRIndex.html", "resourceID", resourceID);
 
-          let accountLink = window.location.href;
-          accountLink = accountLink.replace("index.html", "CRDRIndex.html");
-          accountLink = `${accountLink}&resourceID=${resourceID}`;
+          
 
           li += `<tr>
                 <td>${name}</td>
