@@ -94,14 +94,6 @@ async function loadRules(filterType) {
 
           let accountLink = getNewUrl("ruleIndex.html", "ruleName", ruleID);
 
-
-          //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
-          // let accountLink2 = `${fixedAddress}CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
-
-
-
-
-
           if(filterType === 'nonValues')
           {
             if (length > 0) {

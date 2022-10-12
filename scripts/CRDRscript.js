@@ -258,49 +258,6 @@ async function loadComplianceAudit() {
   }
 }
 
-// async function loadExceptionAudit() {
-
-//   try {
-
-//     const params = new URLSearchParams(window.location.search);
-//     let URLresourceID = params.get("resourceID");
-
-//     //${URLresourceID}
-//     const response = await fetch(`https://itp.vlee.me.uk/compliance/resource/${URLresourceID}`, {
-//       headers: { "Content-type": "application/json" },
-//       method: 'get',
-//       credentials: "include"
-//     }).then(response => response.json())
-//       .then(json => {
-//         // Create a variable to store HTML
-//         let li = ``;
-//         // Loop through each data and add a table row
-//         json.forEach(value => {
-//           const name = value['rule']['name'];
-//           const firstname = value['user']['first_name'];
-//           const surname = value['user']['last_name'];
-//           const action = value['action'];
-//           const actionDate = value['action_datetime'];
-
-
-//           li += `<tr>
-//               <td>${name}</td>
-//               <td>${action}</td>
-//               <td>${firstname} ${surname}</td>
-//               <td>${actionDate}</td>
-              
-//             </tr>`
-
-//         });
-//         // Display result
-//         document.getElementById("exception-audit-table").innerHTML = li;
-
-
-//       });
-//   } catch (err) {
-//     console.error(`Error: ${err}`);
-//   }
-// }
 
 
 function homePage(){
@@ -308,18 +265,12 @@ function homePage(){
 }
 
 function addException(ruleID) {
-  //const params = new URLSearchParams(window.location.search);
-  let accountLink = window.location.href;
-  accountLink = accountLink.replace("CRDRIndex.html", "addException.html");
-  accountLink = `${accountLink}&ruleID=${ruleID}`;
+  let accountLink = getNewUrl("addException.html", "ruleID", ruleID);
   window.location = accountLink;
 }
 
 function editException(exceptionID) {
-  //const params = new URLSearchParams(window.location.search);
-  let accountLink = window.location.href;
-  accountLink = accountLink.replace("CRDRIndex.html", "editException.html");
-  accountLink = `${accountLink}&exceptionID=${exceptionID}`;
+  let accountLink = getNewUrl("editException.html", "exceptionID", exceptionID);
   window.location = accountLink;
 }
 
