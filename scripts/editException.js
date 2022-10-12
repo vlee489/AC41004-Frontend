@@ -72,11 +72,10 @@ async function logOut()
 async function loadExceptions(){
     try {     
     const params = new URLSearchParams(window.location.search);
-    let URLresourceID = params.get("resourceID");
     let URLexceptionID = params.get("exceptionID");
   
     //${URLresourceID}
-    const response = await fetch(`https://itp.vlee.me.uk/exceptions/resource/${URLresourceID}`, {
+    const response = await fetch(`https://itp.vlee.me.uk/exceptions/${URLexceptionID}`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
         credentials:"include"
@@ -84,20 +83,20 @@ async function loadExceptions(){
       .then(json => {
         let li = ``;
           // Loop through each data and add a table row
-          json.forEach(exception => {
+          
             
-            const exceptionID = exception['id'];
+            
            
-            if (exceptionID == URLexceptionID){
-                let exceptionReview = exception['review_date'];
-                let justification = exception['justification'];
-                let name = exception['exception_value'];
-                suspended = exception['suspended'];
+            
+                let exceptionReview = json['review_date'];
+                let justification = json['justification'];
+                let name = json['rule']['name'];
+                suspended = json['suspended'];
 
                 if(suspended){
                     li += `<tr>
                     <td>${name}</td>
-                    <td>${exceptionID}</td>
+                    <td>${URLexceptionID}</td>
                     <td>${exceptionReview}</td>
                     <td><i class="fa-solid fa-check"></i></td>
                     <td>${justification}</td>
@@ -106,7 +105,7 @@ async function loadExceptions(){
                 }else{
                     li += `<tr>
                     <td>${name}</td>
-                    <td>${exceptionID}</td>
+                    <td>${URLexceptionID}</td>
                     <td>${exceptionReview}</td>
                     <td><i class="fa-solid fa-xmark"></i></td>
                     <td>${justification}</td>
@@ -114,7 +113,7 @@ async function loadExceptions(){
                   </tr>`
                 }
                 
-            }  
+            
             document.getElementById("current-exception-table").innerHTML = li;
          
             if (suspended){
@@ -124,7 +123,7 @@ async function loadExceptions(){
             }
 
             
-        });   
+           
   });
     } catch(err) {
       console.error(`Error: ${err}`);
@@ -209,22 +208,28 @@ async function loadExceptionAudit(){
 
               const user = exception['user']['email'];
               const action = exception['action'];
-              const old_justification = exception['old_justification'];
-              const new_justification = exception['new_justification'];
-              const old_review = exception['old_review'];
-              const new_review = exception['new_review'];
-              const old_suspended = exception['old_suspended'];
-              const new_suspended = exception['new_suspended'];
+              const lastReview = exception['action_datetime']
+              const oldValue = 'N/A';
+              const newValue = 'N/A';
 
+              if (action == "update_justification"){
+                oldValue = exception['old_justification'];
+                newValue = exception['new_justification'];
+              }else if(action == "update_review_date"){
+                oldValue = exception['old_review_date'];
+                newValue = exception['new_review_date'];
+              }else if(action == "update_value"){
+                oldValue = exception['old_suspended'];
+                newValue = exception['new_suspended'];
+              }
+              
                   li +=`<tr>
                 <td>${user}</td>
                 <td>${action}</td>
-                <td>${old_justification}</td>
-                <td>${new_justification}</td>
-                <td>${old_review}</td>
-                <td>${new_review}</td>
-                <td>${old_suspended}</td>
-                <td>${new_suspended}</td>
+                <td>${lastReview}</td>
+                <td>${oldValue}</td>
+                <td>${newValue}</td>
+                
                 
                 
                 
