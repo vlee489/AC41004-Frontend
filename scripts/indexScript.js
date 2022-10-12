@@ -2,16 +2,6 @@ let defaultAccountID = '';
 let fixedAddress = ' ';
 let homeAddress = ' ';
 
-async function checkUrl() {
-  /**
-   * Checks if the URL has index.html, if not redirect to index.html
-   * this is a bodge to fix IDs not working correctly when not on index.html
-   */
-  if (!(location.href.match(/index.html/))) {
-    window.location.replace("/index.html");
-  }
-}
-
 async function getPermissions() {
   /**
    * Get the permissions of the user
@@ -67,6 +57,15 @@ async function loadAccounts() {
 
 };
 
+async function checkURL() {
+  const params = new URLSearchParams(window.location.search);
+  let URLaccountID = params.get("id");
+  if (URLaccountID == null || URLaccountID == undefined || URLaccountID == "") {
+    await updateUrlPram("id", defaultAccountID);
+  }
+
+}
+
 
 
 // Fetches compliance rules and the number of non-compliant resources into the Compliance Rules tables
@@ -74,16 +73,9 @@ async function loadRules(filterType) {
 
   try {
     //633ad7aca938b45d958ae772
-    await loadAccounts();
     const params = new URLSearchParams(window.location.search);
     let non_compliant_resources = [];
-
     let URLaccountID = params.get("id");
-    if (URLaccountID == null) {
-      URLaccountID = defaultAccountID;
-      let newURL = `${window.location.href}?id=${URLaccountID}`;
-      window.location.replace(newURL);
-    }
 
     const response = await fetch(`https://itp.vlee.me.uk/ruleOverview/${URLaccountID}`, {
       headers: { "Content-type": "application/json" },
@@ -100,9 +92,7 @@ async function loadRules(filterType) {
           const length = user['non_compliant'].length;
           const ruleID = user['rule']['id'];
 
-          let accountLink = window.location.href;
-          accountLink = accountLink.replace("index.html", "ruleIndex.html");
-          accountLink = `${accountLink}&ruleName=${ruleID}`;
+          let accountLink2 = getNewUrl("ruleIndex.html", "ruleName", ruleID)
 
 
           //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
@@ -157,14 +147,8 @@ async function loadOverdue() {
 
   try {
     //633ad7aca938b45d958ae772
-    await loadAccounts();
     const params = new URLSearchParams(window.location.search);
     let URLaccountID = params.get("id");
-    if (URLaccountID == null) {
-      URLaccountID = defaultAccountID;
-      let newURL = `${window.location.href}?id=${URLaccountID}`;
-      window.location.replace(newURL);
-    }
     const response = await fetch(`https://itp.vlee.me.uk/exceptions/account/${URLaccountID}/overdue`, {
       headers: { "Content-type": "application/json" },
       method: 'get',
@@ -209,14 +193,8 @@ async function loadOverdue() {
 async function loadUpcoming() {
   try {
     //633ad7aca938b45d958ae772
-    await loadAccounts();
     const params = new URLSearchParams(window.location.search);
     let URLaccountID = params.get("id");
-    if (URLaccountID == null) {
-      URLaccountID = defaultAccountID;
-      let newURL = `${window.location.href}?id=${URLaccountID}`;
-      window.location.replace(newURL);
-    }
     const response = await fetch(`https://itp.vlee.me.uk/exceptions/account/${URLaccountID}/upcoming?days=350`, {
       headers: { "Content-type": "application/json" },
       method: 'get',
@@ -262,14 +240,8 @@ async function loadUpcoming() {
 async function loadChartValues() {
   try {
     //633ad7aca938b45d958ae772
-    await loadAccounts();
     const params = new URLSearchParams(window.location.search);
     let URLaccountID = params.get("id");
-    if (URLaccountID == null) {
-      URLaccountID = defaultAccountID;
-      let newURL = `${window.location.href}?id=${URLaccountID}`;
-      window.location.replace(newURL);
-    }
     const response = await fetch(`https://itp.vlee.me.uk/accountOverview/${URLaccountID}`, {
       headers: { "Content-type": "application/json" },
       method: 'get',
@@ -326,8 +298,9 @@ async function logOut()
 
 
 (async () => {
-  await checkUrl()
   await getPermissions();
+  await loadAccounts();
+  await checkURL();
   loadRules();
   loadOverdue();
   loadUpcoming();
