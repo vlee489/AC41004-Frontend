@@ -101,8 +101,8 @@ async function loadRules(filterType) {
           const ruleID = user['rule']['id'];
 
           let accountLink = window.location.href;
-          let accountLink2 = accountLink.replace("index.html", "ruleIndex.html");
-          accountLink2 = `${accountLink2}&ruleName=${ruleID}`;
+          accountLink = accountLink.replace("index.html", "ruleIndex.html");
+          accountLink = `${accountLink}&ruleName=${ruleID}`;
 
 
           //let accountLink2 = `http://127.0.0.1:5500/CRDRIndex.html?id=${URLaccountID}&ruleName=${name}`;
@@ -118,7 +118,7 @@ async function loadRules(filterType) {
               li += `<tr>
                 <td>${name}</td>
                 <td >${length}</td>
-                <td><a href=${accountLink2} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href=${accountLink} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
 
               //for item in non compliant
@@ -132,7 +132,7 @@ async function loadRules(filterType) {
             li += `<tr>
                 <td>${name}</td>
                 <td >${length}</td>
-                <td><a href=${accountLink2} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href=${accountLink} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
 
             //for item in non compliant
@@ -181,12 +181,17 @@ async function loadOverdue() {
           const name = user['rule']['name'];
           const type = user['rule']['resource_type']['name'];
           const review = user['review_date'];
+          const resourceID = user['resource']['id'];
+
+          let accountLink = window.location.href;
+          accountLink = accountLink.replace("index.html", "CRDRIndex.html");
+          accountLink = `${accountLink}&resourceID=${resourceID}`;
 
           li += `<tr>
                 <td>${name}</td>
                 <td >${type}</td>
                 <td >${review}</td>
-                <td ><button type="button" class="btn btn-warning" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                <td><a href=${accountLink} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
           counter++;
         });
@@ -228,12 +233,18 @@ async function loadUpcoming() {
           const name = user['rule']['name'];
           const type = user['rule']['resource_type']['name'];
           const review = user['review_date'];
+          const resourceID = user['resource']['id'];
+
+
+          let accountLink = window.location.href;
+          accountLink = accountLink.replace("index.html", "CRDRIndex.html");
+          accountLink = `${accountLink}&resourceID=${resourceID}`;
 
           li += `<tr>
                 <td>${name}</td>
                 <td >${type}</td>
                 <td >${review}</td>
-                <td ><button type="button" class="btn btn-warning" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                <td><a href=${accountLink} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
           counter++;
         });

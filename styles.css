@@ -1,6 +1,6 @@
 .dyn-height {
-    /* min-height: 350px; */
-    max-height: 350px;
+    min-height: 300px;
+    max-height: 300px;
     overflow-y:scroll;
 }
 
@@ -9,9 +9,18 @@
 }
 
 .chart-height {
-    
-    max-height: 350px;
-    /* overflow-y:scroll; */
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.header-height{
+    min-height: 63px;
+    max-height: 63px;
+}
+
+.pie-height{
+    overflow: hidden;
+    max-height: 300px;
 }
 
 .container {
