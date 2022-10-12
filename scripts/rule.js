@@ -96,19 +96,16 @@ async function loadResources(non_compliant_resources){
           json.forEach(resource => {
             const name = resource['name'];
             const resourceID = resource['id'];
-            //const type = resource['resource_type']['name'];
             
 
-            let accountLink = window.location.href;
-            let accountLink2 = getNewUrl("CRDRIndex.html", "resourceID", resourceID)
+            let accountLink = getNewUrl("CRDRIndex.html", "resourceID", resourceID);
            
             if (non_compliant_resources.includes(resourceID)){
                 li += `<tr>
                 <td>${name}</td>
-                <td><a href=${accountLink2} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a href=${accountLink} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
             }
-              //<td><a href=${accountLink2} class="btn btn-warning" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
               
             
         });
