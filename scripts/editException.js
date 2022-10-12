@@ -209,22 +209,28 @@ async function loadExceptionAudit(){
 
               const user = exception['user']['email'];
               const action = exception['action'];
-              const old_justification = exception['old_justification'];
-              const new_justification = exception['new_justification'];
-              const old_review = exception['old_review'];
-              const new_review = exception['new_review'];
-              const old_suspended = exception['old_suspended'];
-              const new_suspended = exception['new_suspended'];
+              const lastReview = exception['action_datetime']
+              const oldValue = 'N/A';
+              const newValue = 'N/A';
 
+              if (action == "update_justification"){
+                oldValue = exception['old_justification'];
+                newValue = exception['new_justification'];
+              }else if(action == "update_review_date"){
+                oldValue = exception['old_review_date'];
+                newValue = exception['new_review_date'];
+              }else if(action == "update_value"){
+                oldValue = exception['old_suspended'];
+                newValue = exception['new_suspended'];
+              }
+              
                   li +=`<tr>
                 <td>${user}</td>
                 <td>${action}</td>
-                <td>${old_justification}</td>
-                <td>${new_justification}</td>
-                <td>${old_review}</td>
-                <td>${new_review}</td>
-                <td>${old_suspended}</td>
-                <td>${new_suspended}</td>
+                <td>${lastReview}</td>
+                <td>${oldValue}</td>
+                <td>${newValue}</td>
+                
                 
                 
                 
