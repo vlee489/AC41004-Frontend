@@ -70,7 +70,7 @@ async function loadAccounts() {
 
 
 // Fetches compliance rules and the number of non-compliant resources into the Compliance Rules tables
-async function loadRules() {
+async function loadRules(filterType) {
 
   try {
     //633ad7aca938b45d958ae772
@@ -111,6 +111,7 @@ async function loadRules() {
 
 
 
+
           if(filterType === 'nonValues')
           {
             if (length > 0) {
@@ -140,23 +141,17 @@ async function loadRules() {
               non_compliant_resources.push(resourceid);
             });
           }
-
         });
         // Display result
 
         document.getElementById("rule-table").innerHTML = li;
 
       });
-  } catch(err) {
+  } catch (err) {
     console.error(`Error: ${err}`);
   }
 }
 
-
-function filterApply(filterType)
-{
-  loadRules(filterType);
-}
 
 async function loadOverdue() {
 
@@ -317,6 +312,7 @@ async function logOut()
     window.location.replace("loginIndex.html");
   }
 }
+
 
 (async () => {
   await checkUrl()
