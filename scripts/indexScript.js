@@ -284,6 +284,20 @@ async function loadChartValues() {
   }
 }
 
+async function logOut()
+{
+  const response = await fetch(`https://itp.vlee.me.uk/session/logout`, {
+    headers: {"Content-type": "application/json"},
+    method: 'get',
+    credentials:"include"
+  }).then(response => response.json())
+  {
+    window.localStorage.clear();
+    window.location.reload(true);
+    window.location.replace("loginIndex.html");
+  }
+}
+
 
 (async () => {
   await checkUrl()
