@@ -249,13 +249,7 @@ async function loadExceptionAudit(){
   }
 
   function completedEdit(){
-    const params = new URLSearchParams(window.location.search);
-    let accountLink = window.location.href;
-    accountLink = accountLink.replace("editException.html", "CRDRIndex.html");
-    let URLexceptionID = params.get("exceptionID");
-    URLexceptionID = `&exceptionID=${URLexceptionID}`;
-    accountLink = accountLink.replace(URLexceptionID, "");
-    window.location = accountLink;
+    window.location = getNewUrl("CRDRIndex.html", "exceptionID");
   }
 
 // Permission Checking code 
