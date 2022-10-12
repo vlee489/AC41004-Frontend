@@ -16,8 +16,7 @@ Code from http://ameyraut.com/display-tooltip-without-javascript-or-jquery-pure-
     transform: translate(-50%,-100%); 
     margin:0 auto;
     color:#FFF;
-    min-width:100px;
-    min-width:150px;
+    min-width:200px;
     top:-5px;
     left: 50%;
     text-align:center;
