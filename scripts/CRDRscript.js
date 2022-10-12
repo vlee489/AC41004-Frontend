@@ -53,24 +53,45 @@ async function loadRules(level = 0) {
           const name = rule['name'];
           const ruleID = rule['id'];
           const compliant = rule['compliant'];
+          const exceptionExists = rule['exception'];
+          console.log(exceptionExists);
+          
 
           if (level > 0) {
-            if (compliant) {
+            if (compliant && exceptionExists) {
               li += `<tr>
                   <td>${name}</td>
+                  <td><i class="fa-solid fa-check"></i></td>
                   <td><i class="fa-solid fa-check"></i></td>
                   <td><button type="button" tabindex="0" class="btn btn-warning" disabled><i class="fa-solid fa-plus"></i></button></td>
                   
                 </tr>`
-            } else {
+            } else if (compliant && !exceptionExists)  {
+              li += `<tr>
+                  <td>${name}</td>
+                  <td><i class="fa-solid fa-check"></i></td>
+                  <td><i class="fa-solid fa-xmark"></i></td>
+                  <td><button type="button" tabindex="0" class="btn btn-warning" disabled><i class="fa-solid fa-plus"></i></button></td>
+                  
+                </tr>`
+            } else if (!compliant && exceptionExists) {
               li += `<tr>
                   <td>${name}</td>
                   <td><i class="fa-solid fa-xmark"></i></td>
-                  <td><button type="button" tabindex="0" onclick="addException('${ruleID}')" class="btn btn-warning"><i class="fa-solid fa-plus"></i></button></td>
+                  <td><i class="fa-solid fa-check"></i></td>
+                  <td><button type="button" tabindex="0" class="btn btn-warning" disabled><i class="fa-solid fa-plus"></i></button></td>
                   
                 </tr>`
-            }
-          } else {
+          } else if (!compliant && !exceptionExists) {
+            li += `<tr>
+            <td>${name}</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+            <td><button type="button" tabindex="0" onclick="addException('${ruleID}')" class="btn btn-warning"><i class="fa-solid fa-plus"></i></button></td>
+            
+          </tr>`
+            
+          }}else{
             if (compliant) {
               li += `<tr>
                   <td>${name}</td>
@@ -155,6 +176,7 @@ async function loadExceptions(level = 0) {
           const firstname = exception['last_updated_by']['first_name'];
           const surname = exception['last_updated_by']['last_name'];
           const suspended = exception['suspended'];
+          
 
           if (level > 0) {
             if (suspended) {
