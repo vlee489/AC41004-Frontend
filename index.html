@@ -24,6 +24,9 @@
               <li class="dropdown-item"  id="accountListItem"></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link logout" aria-current="page" href="#" onclick="logOut()">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -56,9 +59,8 @@
                 Filter
               </button>
               <ul class="dropdown-menu float-right mt-2" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" >All Rules</a></li>
-                <li><a class="dropdown-item" >Compliant Rules</a></li>
-                <li><a class="dropdown-item" onclick="">Non-Compliant Rules</a></li>
+                <li><a class="dropdown-item" onclick="filterApply('allRules')">All Rules</a></li>
+                <li><a class="dropdown-item" onclick="filterApply('nonValues')">Non-Compliant Rules</a></li>
               </ul>
             </div>
           </div>
