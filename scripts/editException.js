@@ -72,11 +72,10 @@ async function logOut()
 async function loadExceptions(){
     try {     
     const params = new URLSearchParams(window.location.search);
-    let URLresourceID = params.get("resourceID");
     let URLexceptionID = params.get("exceptionID");
   
     //${URLresourceID}
-    const response = await fetch(`https://itp.vlee.me.uk/exceptions/resource/${URLresourceID}`, {
+    const response = await fetch(`https://itp.vlee.me.uk/exceptions/${URLexceptionID}`, {
         headers: {"Content-type": "application/json"},
         method: 'get',
         credentials:"include"
@@ -84,20 +83,20 @@ async function loadExceptions(){
       .then(json => {
         let li = ``;
           // Loop through each data and add a table row
-          json.forEach(exception => {
+          
             
-            const exceptionID = exception['id'];
+            
            
-            if (exceptionID == URLexceptionID){
-                let exceptionReview = exception['review_date'];
-                let justification = exception['justification'];
-                let name = exception['exception_value'];
-                suspended = exception['suspended'];
+            
+                let exceptionReview = json['review_date'];
+                let justification = json['justification'];
+                let name = json['rule']['name'];
+                suspended = json['suspended'];
 
                 if(suspended){
                     li += `<tr>
                     <td>${name}</td>
-                    <td>${exceptionID}</td>
+                    <td>${URLexceptionID}</td>
                     <td>${exceptionReview}</td>
                     <td><i class="fa-solid fa-check"></i></td>
                     <td>${justification}</td>
@@ -106,7 +105,7 @@ async function loadExceptions(){
                 }else{
                     li += `<tr>
                     <td>${name}</td>
-                    <td>${exceptionID}</td>
+                    <td>${URLexceptionID}</td>
                     <td>${exceptionReview}</td>
                     <td><i class="fa-solid fa-xmark"></i></td>
                     <td>${justification}</td>
@@ -114,7 +113,7 @@ async function loadExceptions(){
                   </tr>`
                 }
                 
-            }  
+            
             document.getElementById("current-exception-table").innerHTML = li;
          
             if (suspended){
@@ -124,7 +123,7 @@ async function loadExceptions(){
             }
 
             
-        });   
+           
   });
     } catch(err) {
       console.error(`Error: ${err}`);
