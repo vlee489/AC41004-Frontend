@@ -17,7 +17,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Accounts 
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="accountList">
@@ -27,7 +27,12 @@
           <li class="nav-item">
             <a class="nav-link logout" aria-current="page" onclick="logOut()">Log Out</a>
           </li>
+          
         </ul>
+        <div class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search Resources" id="search-bar" aria-label="Search">
+          <button class="btn btn-outline-dark" onclick="searchResources()" type="submit">Search</button>
+      </div>
       </div>
     </div>
   </nav>
@@ -137,6 +142,7 @@
     </div>
   </div>
   </body>
+  </html>
 
 
 

@@ -2,6 +2,7 @@ let defaultAccountID = '';
 let fixedAddress = ' ';
 let homeAddress = ' ';
 
+
 async function getPermissions() {
   /**
    * Get the permissions of the user
@@ -17,6 +18,18 @@ async function getPermissions() {
   } catch (err) {
     console.error(`Error: ${err}`)
   }
+}
+
+function searchResources(){
+  try{
+    let search = document.getElementById('search-bar').value;
+    let accountLink = getNewUrl("search.html", "query", search);
+    window.location = accountLink;
+  } catch (err) {
+    console.error(`Error: ${err}`)
+  }
+  
+
 }
 
 
