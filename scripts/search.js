@@ -1,5 +1,6 @@
 //https://itp.vlee.me.uk/search/account/633ad7aca938b45d958ae772/Martyn
 
+
 async function getPermissions() {
     /**
      * Get the permissions of the user
@@ -47,11 +48,13 @@ async function getPermissions() {
             
             const resourceID = result['id'];
             const name = result['name'];
+            const score = result['score'];
             result_count ++;
 
             let accountLink = getNewUrl("CRDRIndex.html", "resourceID", resourceID);
 
-            li += `<tr>
+            li += `<tr class="item">
+                <td>${score}</td>
                 <td>${name}</td>
                 <td>${resourceID}</td>
                 <td><a href=${accountLink} class="btn btn-warning" tabindex="0" role="button"><i class="fa-regular fa-pen-to-square"></i></a></td>
