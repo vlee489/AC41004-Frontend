@@ -48,7 +48,7 @@ async function getPermissions() {
             
             const resourceID = result['id'];
             const name = result['name'];
-            const score = result['score'];
+            const score = Math.round(result['score']);
             result_count ++;
 
             let accountLink = getNewUrl("CRDRIndex.html", "resourceID", resourceID);
