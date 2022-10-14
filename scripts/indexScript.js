@@ -103,6 +103,7 @@ async function loadRules(filterType) {
         json.forEach(user => {
           const name = user['rule']['name'];
           const length = user['non_compliant'].length;
+          const comp_length = user['compliant'].length;
           const ruleID = user['rule']['id'];
 
           let accountLink = getNewUrl("ruleIndex.html", "ruleName", ruleID);
@@ -113,6 +114,7 @@ async function loadRules(filterType) {
               li += `<tr>
                 <td>${name}</td>
                 <td >${length}</td>
+                <td >${comp_length}</td>
                 <td><a href=${accountLink} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
 
@@ -127,6 +129,7 @@ async function loadRules(filterType) {
             li += `<tr>
                 <td>${name}</td>
                 <td >${length}</td>
+                <td >${comp_length}</td>
                 <td><a href=${accountLink} class="btn btn-warning" role="button" tabindex="0"><i class="fa-regular fa-pen-to-square"></i></a></td>
               </tr>`
 
