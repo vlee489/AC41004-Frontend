@@ -1,3 +1,4 @@
+// source: https://medium.com/swlh/how-to-create-your-first-login-page-with-html-css-and-javascript-602dd71144f1
 const button = document.getElementById('post-btn');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
